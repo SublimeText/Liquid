@@ -1,0 +1,319 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: HTML (Liquid)
+scope: text.html.liquid
+version: 2
+
+extends: Packages/HTML/HTML.sublime-syntax
+
+file_extensions:
+  - liquid
+
+contexts:
+  prototype:
+    - meta_prepend: true
+    - include: liquid-embedded
+
+  main:
+    - include: frontmatter
+    - match: ''
+      set: html
+
+  frontmatter:
+    - match: (---)\s*(?i:(yaml)\s*)?\n
+      captures:
+        0: meta.frontmatter.jekyll
+        1: punctuation.section.block.begin.frontmatter.jekyll
+        2: constant.other.language-name.jekyll
+      embed: scope:source.yaml
+      embed_scope: meta.frontmatter.jekyll source.yaml.embedded.jekyll
+      escape: ^(---|\.{3})\s*\n  # pandoc requires the remainder of the line to be blank
+      escape_captures:
+        0: meta.frontmatter.jekyll
+        1: punctuation.section.block.end.frontmatter.jekyll
+
+  html:
+    - include: preprocessor
+    - include: doctype
+    - include: comment
+    - include: cdata
+    - include: tag
+    - include: entities
+
+###[ CUSTOM HTML ]############################################################
+
+  cdata-content:
+    - meta_prepend: true
+    - meta_include_prototype: false
+    - include: liquid-interpolations
+
+  script-javascript-content:
+    - meta_include_prototype: false
+    - match: \s*((<!\[)(CDATA)(\[))
+      captures:
+        1: meta.tag.sgml.cdata.html
+        2: punctuation.definition.tag.begin.html
+        3: keyword.declaration.cdata.html
+        4: punctuation.definition.tag.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.js.liquid
+      embed_scope: meta.tag.sgml.cdata.html source.js.embedded.html
+      escape: \]\]>
+      escape_captures:
+        0: meta.tag.sgml.cdata.html punctuation.definition.tag.end.html
+    - match: '{{script_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.js.liquid
+      embed_scope: source.js.embedded.html
+      escape: '{{script_content_end}}'
+      escape_captures:
+        1: source.js.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.js.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  style-css-content:
+    - meta_include_prototype: false
+    - match: \s*((<!\[)(CDATA)(\[))
+      captures:
+        1: meta.tag.sgml.cdata.html
+        2: punctuation.definition.tag.begin.html
+        3: keyword.declaration.cdata.html
+        4: punctuation.definition.tag.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.css.liquid
+      embed_scope: meta.tag.sgml.cdata.html source.css.embedded.html
+      escape: \]\]>
+      escape_captures:
+        0: meta.tag.sgml.cdata.html punctuation.definition.tag.end.html
+    - match: '{{style_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.css.liquid
+      embed_scope: source.css.embedded.html
+      escape: '{{style_content_end}}'
+      escape_captures:
+        1: source.css.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.css.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  tag-event-attribute-value:
+    - match: \"
+      scope:
+        meta.string.html string.quoted.double.html
+        punctuation.definition.string.begin.html
+      embed: scope:source.js.liquid
+      embed_scope:
+        meta.string.html meta.interpolation.html
+        source.js.embedded.html
+      escape: \"
+      escape_captures:
+        0: meta.string.html string.quoted.double.html
+           punctuation.definition.string.end.html
+    - match: \'
+      scope:
+        meta.string.html string.quoted.single.html
+        punctuation.definition.string.begin.html
+      embed: scope:source.js.liquid
+      embed_scope:
+        meta.string.html meta.interpolation.html
+        source.js.embedded.html
+      escape: \'
+      escape_captures:
+        0: meta.string.html string.quoted.single.html
+           punctuation.definition.string.end.html
+    - include: else-pop
+
+  tag-style-attribute-value:
+    - match: \"
+      scope:
+        meta.string.html string.quoted.double.html
+        punctuation.definition.string.begin.html
+      embed: scope:source.css.liquid#rule-list-body
+      embed_scope:
+        meta.string.html meta.interpolation.html
+        source.css.embedded.html
+      escape: \"
+      escape_captures:
+        0: meta.string.html string.quoted.double.html
+           punctuation.definition.string.end.html
+    - match: \'
+      scope:
+        meta.string.html string.quoted.single.html
+        punctuation.definition.string.begin.html
+      embed: scope:source.css.liquid#rule-list-body
+      embed_scope:
+        meta.string.html meta.interpolation.html
+        source.css.embedded.html
+      escape: \'
+      escape_captures:
+        0: meta.string.html string.quoted.single.html
+           punctuation.definition.string.end.html
+    - include: else-pop
+
+  tag-attribute-value-content:
+    - meta_prepend: true
+    - include: liquid-interpolations
+
+  strings-common-content:
+    - meta_prepend: true
+    - include: liquid-interpolations
+
+###[ LIQUID INTERPOLATIONS ]##################################################
+
+  liquid-interpolations:
+    - match: (?={[{%])
+      push: liquid-interpolation-content
+
+  liquid-interpolation-content:
+    - meta_include_prototype: false
+    - clear_scopes: 1
+    - meta_scope: meta.interpolation.liquid
+    - include: liquid-embedded
+    - include: immediately-pop
+
+  liquid-embedded:
+    - include: liquid-comments
+    - include: liquid-schemas
+    - include: liquid-objects
+    - include: liquid-tags
+
+###[ LIQUID COMMENTS ]########################################################
+
+  liquid-comments:
+    - match: '{%-?\s*comment\s*-?%}'
+      scope: punctuation.definition.comment.begin.liquid
+      push: liquid-comment-content
+
+  liquid-comment-content:
+    - meta_scope: comment.block.liquid
+    - match: '{%-?\s*endcomment\s*-?%}'
+      scope: punctuation.definition.comment.end.liquid
+      pop: 1
+
+###[ LIQUID SCHEMAS ]#########################################################
+
+  liquid-schemas:
+    - match: ({%-?)\s*(schema)\s*(-?%})
+      captures:
+        0: meta.tag.liquid
+        1: punctuation.definition.tag.schema.begin.liquid
+        2: keyword.control.liquid
+        3: punctuation.definition.tag.schema.end.liquid
+      embed: scope:source.json
+      embed_scope: markup.json.schema.liquid
+      escape: ({%-?)\s*(endschema)\s*(-?%})
+      escape_captures:
+        0: meta.tag.liquid
+        1: punctuation.definition.tag.schema.begin.liquid
+        2: keyword.control.liquid
+        3: punctuation.definition.tag.schema.end.liquid
+
+###[ LIQUID OBJECTS ]#########################################################
+
+  liquid-objects:
+    - match: '{{'
+      scope: meta.object.liquid punctuation.definition.object.begin.liquid
+      embed: liquid-object-content
+      embed_scope: meta.object.liquid
+      escape: '}}'
+      escape_captures:
+        0: meta.object.liquid punctuation.definition.object.end.liquid
+
+  liquid-object-content:
+    - include: liquid-strings
+    - include: liquid-pipe
+    - include: liquid-colon
+    - include: liquid-vars
+
+  liquid-vars:
+    - match: '[a-z]+'
+      scope: variable.other.liquid
+    - match: '[0-9]+'
+      scope: constant.numeric.value.liquid
+    - match: '\.'
+      scope: punctuation.separator.liquid
+
+  liquid-colon:
+    - match: ':'
+      scope: punctuation.separator.key-value.liquid
+
+  liquid-pipe:
+    - match: \s(\|)\s([a-z_-]+)
+      captures:
+        1: keyword.operator.logical.pipe.liquid
+        2: support.function.filter.liquid
+
+  liquid-strings:
+    - match: \'
+      scope: punctuation.definition.string.begin.liquid
+      push: liquid-single-quoted-string-content
+    - match: \"
+      scope: punctuation.definition.string.begin.liquid
+      push: liquid-double-quoted-string-content
+
+  liquid-single-quoted-string-content:
+    - meta_scope: string.quoted.single.liquid
+    - match: \'
+      scope: punctuation.definition.string.end.liquid
+      pop: 1
+    - match: \n
+      scope: invalid.illegal.newline.liquid
+      pop: 1
+
+  liquid-double-quoted-string-content:
+    - meta_scope: string.quoted.double.liquid
+    - match: \"
+      scope: punctuation.definition.string.end.liquid
+      pop: 1
+    - match: \n
+      scope: invalid.illegal.newline.liquid
+      pop: 1
+
+###[ LIQUID TAGS ]############################################################
+
+  liquid-tags:
+    - match: '{%-?'
+      scope: meta.tag.liquid punctuation.definition.tag.begin.liquid
+      embed: liquid-tag-content
+      embed_scope: meta.tag.liquid
+      escape: '-?%}'
+      escape_captures:
+        0: meta.tag.liquid punctuation.definition.tag.end.liquid
+
+  liquid-tag-content:
+    - include: liquid-constants
+    - include: liquid-keywords
+    - include: liquid-operators
+    - include: liquid-object-content
+
+  liquid-constants:
+    - match: \b(?:blank|empty|nil)\b
+      scope: constant.language.null.liquid
+    - match: \b(?:true|false)\b
+      scope: constant.language.boolean.liquid
+
+  liquid-keywords:
+    - match: \b(?:if|else|elsif|endif|case|endcase|unless|endunless|when)\b
+      scope: keyword.control.conditional.liquid
+    - match: \b(?:for|endfor)\b
+      scope: keyword.control.loop.liquid
+    - match: \b(?:include)\b
+      scope: keyword.control.import.liquid
+    - match: \b(?:assign|capture|endcapture)\b
+      scope: keyword.control.liquid
+
+  liquid-operators:
+    - match: =
+      scope: keyword.operator.assignment.liquid
+    - match: (?:!=|==|<=|>=|<|>)
+      scope: keyword.operator.comparison.liquid
+    - match: \b(?:and|or|not|contains|in)\b
+      scope: keyword.operator.logical.liquid
+    - match: \b(?:by|offset)\b
+      scope: keyword.operator.liquid

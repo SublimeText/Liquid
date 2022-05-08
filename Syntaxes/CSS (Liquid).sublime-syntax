@@ -1,0 +1,21 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: CSS (Liquid)
+scope: source.css.liquid
+version: 2
+
+extends: Packages/CSS/CSS.sublime-syntax
+
+file_extensions:
+  - css.liquid
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: HTML (Liquid).sublime-syntax#liquid-embedded
+
+  string-content:
+    - meta_prepend: true
+    - include: HTML (Liquid).sublime-syntax#liquid-interpolations

@@ -1,0 +1,21 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: Markdown (Liquid)
+scope: text.html.markdown.liquid
+version: 2
+
+extends: Packages/Markdown/Markdown.sublime-syntax
+
+file_extensions:
+  - md
+  - mdown
+  - markdown
+  - markdn
+
+contexts:
+  prototype:
+    - include: HTML (Liquid).sublime-syntax#liquid-embedded
+
+  html-content:
+    - include: HTML (Liquid).sublime-syntax#html
