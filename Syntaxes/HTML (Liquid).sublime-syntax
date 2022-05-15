@@ -21,7 +21,7 @@ contexts:
       set: html
 
   frontmatter:
-    - match: (---)\s*(?i:(yaml)\s*)?\n
+    - match: (---)\s*(?i:(ya?ml)\s*)?\n
       captures:
         0: meta.frontmatter.jekyll
         1: punctuation.section.block.begin.frontmatter.jekyll
