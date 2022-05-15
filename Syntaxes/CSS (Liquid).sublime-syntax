@@ -9,6 +9,7 @@ extends: Packages/CSS/CSS.sublime-syntax
 
 file_extensions:
   - css.liquid
+  - liquid.css
 
 contexts:
 

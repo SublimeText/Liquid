@@ -9,6 +9,7 @@ extends: Packages/JavaScript/JavaScript.sublime-syntax
 
 file_extensions:
   - js.liquid
+  - liquid.js
 
 contexts:
 
