@@ -15,8 +15,8 @@ contexts:
 
   prototype:
     - meta_prepend: true
-    - include: HTML (Liquid).sublime-syntax#liquid-embedded
+    - include: scope:source.liquid
 
   string-content:
     - meta_prepend: true
-    - include: HTML (Liquid).sublime-syntax#liquid-interpolations
+    - include: scope:source.liquid#interpolations
