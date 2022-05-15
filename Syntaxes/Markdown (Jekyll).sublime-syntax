@@ -1,0 +1,15 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: Markdown (Jekyll)
+scope: text.html.markdown.liquid.jekyll
+version: 2
+
+extends: Packages/Markdown/Markdown.sublime-syntax
+
+contexts:
+  prototype:
+    - include: HTML (Jekyll).sublime-syntax#liquid-embedded
+
+  html-content:
+    - include: HTML (Jekyll).sublime-syntax#html
