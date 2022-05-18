@@ -4,5 +4,5 @@
 ]]></content>
 <tabTrigger>assign</tabTrigger>
 <description>liquid assign</description>
-<scope>text.html</scope>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - (meta.tag.liquid | meta.object.liquid)</scope>
 </snippet>
