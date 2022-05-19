@@ -20,6 +20,10 @@ contexts:
     - include: liquid
 
   liquid:
+    - match: (?={[{%])
+      push: liquid-content
+
+  liquid-content:
     - include: jekyll-highlights
     - include: liquid-comments
     - include: liquid-schemas
@@ -28,6 +32,7 @@ contexts:
     - include: liquid-style
     - include: liquid-raw
     - include: liquid-tags
+    - include: immediately-pop
 
 ###[ LIQUID INTERPOLATIONS ]##################################################
 
@@ -39,8 +44,7 @@ contexts:
     - clear_scopes: 1
     - meta_include_prototype: false
     - meta_scope: meta.interpolation.liquid
-    - include: liquid
-    - include: immediately-pop
+    - include: liquid-content
 
 ###[ LIQUID COMMENT TAGS ]####################################################
 
