@@ -550,6 +550,14 @@ div {
 |  ^^^^^^^^ keyword.declaration.raw.liquid
 |           ^^ punctuation.definition.tag.end.liquid
 
+{% plugin "foo" %}
+| <- meta.tag.liquid punctuation.definition.tag.begin.liquid
+|^^^^^^^^^^^^^^^^^ meta.tag.liquid
+|^ punctuation.definition.tag.begin.liquid
+|  ^^^^^^ keyword.other.liquid
+|         ^^^^^ meta.string.liquid string.quoted.double.liquid
+|               ^^ punctuation.definition.tag.end.liquid
+
 
 <!--
  --- Test Objects

@@ -149,21 +149,25 @@ contexts:
       captures:
         1: punctuation.definition.tag.begin.liquid
         2: entity.name.tag.liquid
-      embed: liquid-tag-content
+      embed: liquid-tag-statements
       embed_scope: meta.tag.liquid
       escape: -?%}
       escape_captures:
         0: meta.tag.liquid punctuation.definition.tag.end.liquid
 
-  liquid-tag-content:
+  liquid-tag-statements:
     - include: jekyll-links
     - include: liquid-assignments
     - include: liquid-conditionals
     - include: liquid-iterations
     - include: liquid-templates
+    - include: liquid-other
+
+  liquid-tag-expression:
     - include: liquid-operators
     - include: liquid-parens
     - include: liquid-object-content
+    - include: eol-pop
 
 ###[ LIQUID OBJECTS ]#########################################################
 
@@ -203,8 +207,10 @@ contexts:
     # https://shopify.github.io/liquid/tags/variable
     - match: \b(?:assign|capture|endcapture)\b
       scope: keyword.control.liquid
+      push: liquid-tag-expression
     - match: \b(?:decrement|increment)\b
       scope: support.function.liquid
+      push: liquid-tag-expression
 
 ###[ LIQUID CONTITIONALS ]####################################################
 
@@ -212,16 +218,22 @@ contexts:
     # https://shopify.github.io/liquid/tags/control-flow
     - match: \bif\b
       scope: keyword.control.conditional.if.liquid
+      push: liquid-tag-expression
     - match: \belse\b
       scope: keyword.control.conditional.else.liquid
+      push: liquid-tag-expression
     - match: \belsif\b
       scope: keyword.control.conditional.elseif.liquid
+      push: liquid-tag-expression
     - match: \bcase\b
       scope: keyword.control.conditional.case.liquid
+      push: liquid-tag-expression
     - match: \bunless\b
       scope: keyword.control.conditional.unless.liquid
+      push: liquid-tag-expression
     - match: \bwhen\b
       scope: keyword.control.conditional.when.liquid
+      push: liquid-tag-expression
     - match: \b(?:endif|endcase|endunless)\b
       scope: keyword.control.conditional.end.liquid
 
@@ -231,7 +243,9 @@ contexts:
     # https://shopify.github.io/liquid/tags/iteration
     - match: \bcycle\b
       scope: support.function.cycle.liquid
-      push: liquid-cycle-parameters
+      push:
+        - liquid-tag-expression
+        - liquid-cycle-group-name
     - match: \bfor\b
       scope: keyword.control.loop.for.liquid
       push: liquid-for-parameters
@@ -245,7 +259,7 @@ contexts:
     - match: \b(?:endfor|endtablerow)\b
       scope: keyword.control.loop.end.liquid
 
-  liquid-cycle-parameters:
+  liquid-cycle-group-name:
     - match: (")[^"]+(")(?=\s*:)
       scope: constant.other.group.liquid
       captures:
@@ -271,9 +285,7 @@ contexts:
   liquid-iteration-common:
     - match: \bin\b
       scope: keyword.operator.logical.liquid
-    - include: liquid-parens
-    - include: liquid-object-content
-    - include: else-pop
+    - include: liquid-tag-expression
 
 ###[ LIQUID TEMPLATES ]#######################################################
 
@@ -281,8 +293,10 @@ contexts:
     # https://shopify.github.io/liquid/tags/template
     - match: \becho\b
       scope: support.function.liquid
+      push: liquid-tag-expression
     - match: \binclude\b # deprecated
       scope: keyword.control.import.liquid
+      push: liquid-tag-expression
     - match: \brender\b
       scope: support.function.liquid
       push: liquid-render-arguments
@@ -290,15 +304,19 @@ contexts:
     # https://shopify.dev/api/liquid/tags/theme-tags#form
     - match: \b(?:form|endform)\b
       scope: keyword.declaration.form.liquid
+      push: liquid-tag-expression
     # https://shopify.dev/api/liquid/tags/theme-tags#layout
     - match: \blayout\b
       scope: keyword.declaration.layout.liquid
+      push: liquid-tag-expression
     # https://shopify.dev/api/liquid/tags/theme-tags#paginate
     - match: \b(?:paginate|endpaginate)\b
       scope: keyword.control.paginate.liquid
+      push: liquid-tag-expression
     # https://shopify.dev/api/liquid/tags/theme-tags#section
     - match: \bsection\b
       scope: keyword.declaration.section.liquid
+      push: liquid-tag-expression
 
   liquid-render-arguments:
     - match: \bas\b
@@ -312,7 +330,13 @@ contexts:
         1: variable.parameter.liquid
         2: punctuation.separator.key-value.liquid
     - include: liquid-object-content
-    - include: else-pop
+    - include: eol-pop
+
+  liquid-other:
+    # unknown tags added by plugins
+    - match: '{{liquid_variables}}'
+      scope: keyword.other.liquid
+      push: liquid-tag-expression
 
 ###[ LIQUID BRACKETS ]########################################################
 
@@ -2367,6 +2391,10 @@ contexts:
       scope: variable.language.globals.jekyll
 
 ###[ PROTOTYPES ]#############################################################
+
+  eol-pop:
+    - match: $
+      pop: 1
 
   else-pop:
     - match: (?=\S)
