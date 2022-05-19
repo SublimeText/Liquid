@@ -108,10 +108,10 @@ contexts:
 
   liquid-schemas:
     - match: ({%-?)\s*(schema)\s*(-?%})
+      scope: meta.tag.liquid
       captures:
-        0: meta.tag.liquid
         1: punctuation.definition.tag.schema.begin.liquid
-        2: keyword.control.liquid
+        2: keyword.declaration.schema.liquid
         3: punctuation.definition.tag.schema.end.liquid
       embed: scope:source.json
       embed_scope: markup.json.schema.liquid
@@ -119,7 +119,7 @@ contexts:
       escape_captures:
         0: meta.tag.liquid
         1: punctuation.definition.tag.schema.begin.liquid
-        2: keyword.control.liquid
+        2: keyword.declaration.schema.liquid
         3: punctuation.definition.tag.schema.end.liquid
 
 ###[ LIQUID STYLE TAGS ]#######################################################
