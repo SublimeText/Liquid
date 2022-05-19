@@ -1,5 +1,7 @@
 %YAML 1.2
 ---
+# https://shopify.github.io/liquid
+# https://shopify.dev/api/liquid
 # http://www.sublimetext.com/docs/syntax.html
 name: Liquid
 scope: source.liquid
