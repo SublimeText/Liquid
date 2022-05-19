@@ -394,6 +394,21 @@ I am {{ age }} and my favorite food is {{ favorite_food }}.
 |  ^^^^^^^^^^ keyword.declaration.comment.liquid
 |             ^^ punctuation.definition.tag.end.liquid
 
+{% javascript %}
+| <- meta.tag.liquid punctuation.definition.tag.schema.begin.liquid
+|^^^^^^^^^^^^^^^ meta.tag.liquid
+|^ punctuation.definition.tag.schema.begin.liquid
+|  ^^^^^^^^^^ keyword.declaration.raw.liquid
+|             ^^ punctuation.definition.tag.schema.end.liquid
+  function foo() { return 0; }
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.js.embedded.liquid
+{% endjavascript %}
+| <- meta.tag.liquid punctuation.definition.tag.begin.liquid
+|^^^^^^^^^^^^^^^^^^ meta.tag.liquid
+|^ punctuation.definition.tag.begin.liquid
+|  ^^^^^^^^^^^^^ keyword.declaration.raw.liquid
+|                ^^ punctuation.definition.tag.end.liquid
+
 {% raw %}
 | <- meta.tag.liquid punctuation.definition.tag.begin.liquid
 |^^^^^^^^ meta.tag.liquid
@@ -459,6 +474,34 @@ In Handlebars, {{ this }} will be HTML-escaped, but {{{ that }}} will not.
 |                                        ^^ keyword.operator.assignment.liquid
 |                                           ^^^^^^^ variable.other.liquid
 |                                                   ^^ punctuation.definition.tag.end.liquid
+
+{% style %}
+| <- meta.tag.liquid punctuation.definition.tag.schema.begin.liquid
+|^^^^^^^^^^ meta.tag.liquid
+|^ punctuation.definition.tag.schema.begin.liquid
+|  ^^^^^ keyword.declaration.raw.liquid
+|        ^^ punctuation.definition.tag.schema.end.liquid
+
+div {
+    font-{{family}}: "{{font}}";
+|        ^^^^^^^^^^ meta.property-list.css meta.block.css meta.object.liquid
+|        ^^ punctuation.definition.object.begin.liquid
+|          ^^^^^^ variable.other.liquid
+|                ^^ punctuation.definition.object.end.liquid
+|                    ^ meta.string.css string.quoted.double.css punctuation.definition.string.begin.css
+|                     ^^^^^^^^ meta.property-list.css meta.block.css meta.property-value.css meta.string.css meta.interpolation.liquid meta.object.liquid
+|                     ^^ punctuation.definition.object.begin.liquid
+|                       ^^^^ variable.other.liquid
+|                           ^^ punctuation.definition.object.end.liquid
+|                             ^ meta.string.css string.quoted.double.css punctuation.definition.string.end.css
+}
+
+{% endstyle %}
+| <- meta.tag.liquid punctuation.definition.tag.begin.liquid
+|^^^^^^^^^^^^^ meta.tag.liquid
+|^ punctuation.definition.tag.begin.liquid
+|  ^^^^^^^^ keyword.declaration.raw.liquid
+|           ^^ punctuation.definition.tag.end.liquid
 
 
 <!--

@@ -22,6 +22,8 @@ contexts:
     - include: liquid-comments
     - include: liquid-schemas
     - include: liquid-objects
+    - include: liquid-javascript
+    - include: liquid-style
     - include: liquid-raw
     - include: liquid-tags
 
@@ -59,6 +61,24 @@ contexts:
         2: keyword.declaration.comment.liquid
         3: punctuation.definition.tag.end.liquid
       pop: 1
+
+###[ LIQUID JAVASCRIPT TAGS ]##################################################
+
+  liquid-javascript:
+    - match: ({%-?)\s*(javascript)\s*(-?%})
+      scope: meta.tag.liquid
+      captures:
+        1: punctuation.definition.tag.schema.begin.liquid
+        2: keyword.declaration.raw.liquid
+        3: punctuation.definition.tag.schema.end.liquid
+      embed: scope:source.js.liquid
+      embed_scope: source.js.embedded.liquid
+      escape: ({%-?)\s*(endjavascript)\s*(-?%})
+      escape_captures:
+        0: meta.tag.liquid
+        1: punctuation.definition.tag.begin.liquid
+        2: keyword.declaration.raw.liquid
+        3: punctuation.definition.tag.end.liquid
 
 ###[ LIQUID RAW TAGS ]#########################################################
 
@@ -99,6 +119,25 @@ contexts:
         1: punctuation.definition.tag.schema.begin.liquid
         2: keyword.control.liquid
         3: punctuation.definition.tag.schema.end.liquid
+
+###[ LIQUID STYLE TAGS ]#######################################################
+
+  liquid-style:
+    # https://shopify.dev/api/liquid/tags/theme-tags#style
+    - match: ({%-?)\s*(style)\s*(-?%})
+      scope: meta.tag.liquid
+      captures:
+        1: punctuation.definition.tag.schema.begin.liquid
+        2: keyword.declaration.raw.liquid
+        3: punctuation.definition.tag.schema.end.liquid
+      embed: scope:source.css.liquid
+      embed_scope: source.css.embedded.liquid
+      escape: ({%-?)\s*(endstyle)\s*(-?%})
+      escape_captures:
+        0: meta.tag.liquid
+        1: punctuation.definition.tag.begin.liquid
+        2: keyword.declaration.raw.liquid
+        3: punctuation.definition.tag.end.liquid
 
 ###[ LIQUID STATEMENT TAGS ]##################################################
 
