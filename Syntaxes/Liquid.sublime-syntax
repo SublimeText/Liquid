@@ -279,11 +279,24 @@ contexts:
     # https://shopify.github.io/liquid/tags/template
     - match: \becho\b
       scope: support.function.liquid
-    - match: \binclude\b
+    - match: \binclude\b # deprecated
       scope: keyword.control.import.liquid
     - match: \brender\b
       scope: support.function.liquid
       push: liquid-render-arguments
+
+    # https://shopify.dev/api/liquid/tags/theme-tags#form
+    - match: \b(?:form|endform)\b
+      scope: keyword.declaration.form.liquid
+    # https://shopify.dev/api/liquid/tags/theme-tags#layout
+    - match: \blayout\b
+      scope: keyword.declaration.layout.liquid
+    # https://shopify.dev/api/liquid/tags/theme-tags#paginate
+    - match: \b(?:paginate|endpaginate)\b
+      scope: keyword.control.paginate.liquid
+    # https://shopify.dev/api/liquid/tags/theme-tags#section
+    - match: \bsection\b
+      scope: keyword.declaration.section.liquid
 
   liquid-render-arguments:
     - match: \bas\b

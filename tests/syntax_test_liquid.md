@@ -475,6 +475,53 @@ In Handlebars, {{ this }} will be HTML-escaped, but {{{ that }}} will not.
 |                                           ^^^^^^^ variable.other.liquid
 |                                                   ^^ punctuation.definition.tag.end.liquid
 
+{% layout 'full-width' %}
+|<- meta.tag.liquid punctuation.definition.tag.begin.liquid
+|^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.liquid
+|^ punctuation.definition.tag.begin.liquid
+|  ^^^^^^ keyword.declaration.layout.liquid
+|         ^^^^^^^^^^^^ meta.string.liquid string.quoted.single.liquid
+|                      ^^ punctuation.definition.tag.end.liquid
+
+{% form 'reset_customer_password' %}
+| <- meta.tag.liquid punctuation.definition.tag.begin.liquid
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.liquid
+|^ punctuation.definition.tag.begin.liquid
+|  ^^^^ keyword.declaration.form.liquid
+|       ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.liquid string.quoted.single.liquid
+|                                 ^^ punctuation.definition.tag.end.liquid
+
+{% endform %}
+| <- meta.tag.liquid punctuation.definition.tag.begin.liquid
+|^^^^^^^^^^^^ meta.tag.liquid
+|^ punctuation.definition.tag.begin.liquid
+|  ^^^^^^^ keyword.declaration.form.liquid
+|          ^^ punctuation.definition.tag.end.liquid
+
+{% section 'section' %}
+|<- meta.tag.liquid punctuation.definition.tag.begin.liquid
+|^^^^^^^^^^^^^^^^^^^^^^ meta.tag.liquid
+|^ punctuation.definition.tag.begin.liquid
+|  ^^^^^^^ keyword.declaration.section.liquid
+|          ^^^^^^^^^ meta.string.liquid string.quoted.single.liquid
+|                    ^^ punctuation.definition.tag.end.liquid
+
+{% paginate section.settings.products by 2 %}
+| <- meta.tag.liquid punctuation.definition.tag.begin.liquid
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.liquid
+|^ punctuation.definition.tag.begin.liquid
+|  ^^^^^^^^ keyword.control.paginate.liquid
+|                                     ^^ keyword.operator.liquid
+|                                        ^ meta.number.integer.decimal.liquid constant.numeric.value.liquid
+|                                          ^^ punctuation.definition.tag.end.liquid
+
+{% endpaginate %}
+| <- meta.tag.liquid punctuation.definition.tag.begin.liquid
+|^^^^^^^^^^^^^^^^ meta.tag.liquid
+|^ punctuation.definition.tag.begin.liquid
+|  ^^^^^^^^^^^ keyword.control.paginate.liquid
+|              ^^ punctuation.definition.tag.end.liquid
+
 {% style %}
 | <- meta.tag.liquid punctuation.definition.tag.schema.begin.liquid
 |^^^^^^^^^^ meta.tag.liquid
