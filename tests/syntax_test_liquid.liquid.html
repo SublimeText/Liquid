@@ -45,7 +45,7 @@ A Paragraph {{var}}
 |  ^^ keyword.control.conditional.if.liquid
 |     ^^^^^^^ variable.other.liquid
 |            ^ punctuation.accessor.dot.liquid
-|             ^^^^ variable.other.liquid
+|             ^^^^ variable.other.member.liquid
 |                  ^^^^^^^^ keyword.operator.logical.liquid
 |                           ^^^^^^^ meta.string.liquid string.quoted.double.liquid
 |                                   ^^ punctuation.definition.tag.end.liquid
@@ -188,7 +188,7 @@ endcase %}
 |              ^^ keyword.operator.logical.liquid
 |                 ^^^^^^^^^^ variable.other.liquid
 |                           ^ punctuation.accessor.dot.liquid
-|                            ^^^^^^^^ variable.other.liquid
+|                            ^^^^^^^^ variable.other.member.liquid
 |                                     ^^ punctuation.definition.tag.end.liquid
 
   {% cycle "one", "two", "three" %}
@@ -263,7 +263,7 @@ endcase %}
 |                        ^^ punctuation.separator.range.liquid
 |                          ^^^^^^^^^^ variable.other.liquid
 |                                    ^ punctuation.accessor.dot.liquid
-|                                     ^^^^^^^^ variable.other.liquid
+|                                     ^^^^^^^^ variable.other.member.liquid
 |                                             ^ punctuation.section.sequence.end.liquid
 |                                               ^^^^ variable.parameter.loop.liquid
 |                                                   ^ punctuation.separator.key-value.liquid
@@ -292,13 +292,13 @@ for product in collection.products
 |           ^^ keyword.operator.logical.liquid
 |              ^^^^^^^^^^ variable.other.liquid
 |                        ^ punctuation.accessor.dot.liquid
-|                         ^^^^^^^^ variable.other.liquid
+|                         ^^^^^^^^ variable.other.member.liquid
   echo product.title | capitalize
 |^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.liquid
 | ^^^^ support.function.liquid
 |      ^^^^^^^ variable.other.liquid
 |             ^ punctuation.accessor.dot.liquid
-|              ^^^^^ variable.other.liquid
+|              ^^^^^ variable.other.member.liquid
 |                    ^ keyword.operator.logical.pipe.liquid
 |                      ^^^^^^^^^^ support.function.filter.liquid
 endfor %}
@@ -470,7 +470,7 @@ In Handlebars, {{ this }} will be HTML-escaped, but {{{ that }}} will not.
 | ^^ punctuation.definition.object.begin.liquid
 |    ^^^ variable.other.liquid
 |       ^ punctuation.accessor.dot.liquid
-|        ^^^ variable.other.liquid
+|        ^^^ variable.other.member.liquid
 |            ^ keyword.operator.logical.pipe.liquid
 |              ^^^^^ support.function.filter.liquid
 |                   ^ punctuation.separator.key-value.liquid

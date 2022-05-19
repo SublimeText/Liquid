@@ -328,6 +328,7 @@ contexts:
   liquid-punctuations:
     - match: \.
       scope: punctuation.accessor.dot.liquid
+      push: liquid-member-variable
     - match: ':'
       scope: punctuation.separator.key-value.liquid
     - match: ','
@@ -392,6 +393,12 @@ contexts:
   liquid-variables:
     - match: '{{liquid_variables}}'
       scope: variable.other.liquid
+
+  liquid-member-variable:
+    - match: '{{liquid_variables}}'
+      scope: variable.other.member.liquid
+      pop: 1
+    - include: else-pop
 
 ###[ JEKYLL LINK TAGS ]#######################################################
 
@@ -2303,7 +2310,7 @@ contexts:
   jekyll-variables:
     # https://jekyllrb.com/docs/variables/
     - match: \b(?:site|page|layout|content|paginator)\b
-      scope: support.namespace.globals.jekyll
+      scope: variable.language.globals.jekyll
 
 ###[ PROTOTYPES ]#############################################################
 

@@ -50,9 +50,9 @@
 |  ^^^^ keyword.declaration.link.liquid.jekyll
 |       ^^^^^^^^^^^^^^^^^^^^^^ meta.path.url.liquid meta.string.liquid meta.interpolation.liquid meta.object.liquid
 |       ^^ punctuation.definition.object.begin.liquid
-|          ^^^^ variable.other.liquid
+|          ^^^^ variable.language.globals.jekyll
 |              ^ punctuation.accessor.dot.liquid
-|               ^^^^^^^^^^^ variable.other.liquid
+|               ^^^^^^^^^^^ variable.other.member.liquid
 |                           ^^ punctuation.definition.object.end.liquid
 |                              ^^ punctuation.definition.tag.end.liquid
 
