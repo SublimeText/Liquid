@@ -550,7 +550,11 @@ contexts:
 ###[ JEKYLL HIGHLIGHT TAGS ]##################################################
 
   jekyll-highlights:
-    - match: (?={{jekyll_highlight_begin}})
+    - match: '{{jekyll_highlight_begin}}'
+      scope: meta.tag.liquid
+      captures:
+        1: punctuation.definition.tag.begin.liquid
+        2: keyword.declaration.highlight.liquid.jekyll
       push: jekyll-highlight-content
 
   jekyll-highlight-content:
@@ -634,21 +638,13 @@ contexts:
     - include: jekyll-highlight-xonsh
 
   jekyll-highlight-raw:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          (\S*)
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: ((\S*){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
-      push: jekyll-highlight-raw-content
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
+      set: jekyll-highlight-raw-content
 
   jekyll-highlight-raw-content:
     - meta_content_scope: markup.raw.code-fence.liquid.jekyll
@@ -661,20 +657,12 @@ contexts:
       pop: 1
 
   jekyll-highlight-actionscript:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:actionscript|as))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:actionscript|as)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.actionscript.2
       embed_scope: markup.raw.code-fence.liquid.jekyll source.actionscript.2.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -683,22 +671,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-applescript:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:applescript|osascript))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:applescript|osascript)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.applescript
       embed_scope: markup.raw.code-fence.liquid.jekyll source.applescript.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -707,22 +688,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-clojure:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:clojure|clj))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:clojure|clj)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.clojure
       embed_scope: markup.raw.code-fence.liquid.jekyll source.clojure.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -731,22 +705,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-c:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:c|h))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:c|h)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.c
       embed_scope: markup.raw.code-fence.liquid.jekyll source.c.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -755,22 +722,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-cpp:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:c\+\+|cc|cpp|cxx|h\+\+|hpp|hxx))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:c\+\+|cc|cpp|cxx|h\+\+|hpp|hxx)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.c++
       embed_scope: markup.raw.code-fence.liquid.jekyll source.c++.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -779,22 +739,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-csharp:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:csharp|c\#|cs))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:csharp|c\#|cs)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.cs
       embed_scope: markup.raw.code-fence.liquid.jekyll source.cs.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -803,22 +756,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-css:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:css))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:css)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.css
       embed_scope: markup.raw.code-fence.liquid.jekyll source.css.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -827,22 +773,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-diff:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:diff|patch))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:diff|patch)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.diff
       embed_scope: markup.raw.code-fence.liquid.jekyll source.diff.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -851,22 +790,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-dosbatch:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:bat|cmd|dos))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:bat|cmd|dos)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.dosbatch
       embed_scope: markup.raw.code-fence.liquid.jekyll source.dosbatch.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -875,22 +807,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-erlang:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:erlang|escript))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:erlang|escript)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.erlang
       embed_scope: markup.raw.code-fence.liquid.jekyll source.erlang.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -899,22 +824,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-graphviz:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:graphviz))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:graphviz)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.dot
       embed_scope: markup.raw.code-fence.liquid.jekyll source.dot.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -923,22 +841,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-golang:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:go(?:lang)?))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:go(?:lang)?)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.go
       embed_scope: markup.raw.code-fence.liquid.jekyll source.go.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -947,22 +858,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-haskell:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:haskell))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:haskell)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.haskell
       embed_scope: markup.raw.code-fence.liquid.jekyll source.haskell.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -971,22 +875,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-html-php:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:html\+php))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:html\+php)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:embedding.php
       embed_scope: markup.raw.code-fence.liquid.jekyll embedding.php.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -995,22 +892,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-html:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:html))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:html)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:text.html.basic
       embed_scope: markup.raw.code-fence.liquid.jekyll text.html.basic.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1019,22 +909,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-java:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:java))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:java)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.java
       embed_scope: markup.raw.code-fence.liquid.jekyll source.java.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1043,22 +926,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-javascript:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:javascript|js))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:javascript|js)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.js
       embed_scope: markup.raw.code-fence.liquid.jekyll source.js.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1067,22 +943,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-jsonc:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:jsonc?))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:jsonc?)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.json
       embed_scope: markup.raw.code-fence.liquid.jekyll source.json.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1091,22 +960,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-jspx:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:jspx?))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:jspx?)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:text.html.jsp
       embed_scope: markup.raw.code-fence.liquid.jekyll text.html.jsp.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1115,22 +977,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-jsx:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:jsx))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:jsx)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.jsx
       embed_scope: markup.raw.code-fence.liquid.jekyll source.jsx.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1139,22 +994,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-lisp:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:lisp))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:lisp)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.lisp
       embed_scope: markup.raw.code-fence.liquid.jekyll source.lisp.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1163,22 +1011,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-lua:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:lua))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:lua)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.lua
       embed_scope: markup.raw.code-fence.liquid.jekyll source.lua.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1187,22 +1028,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-matlab:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:matlab))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:matlab)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.matlab
       embed_scope: markup.raw.code-fence.liquid.jekyll source.matlab.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1211,22 +1045,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-objc:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:objc|obj-c|objectivec|objective-c))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:objc|obj-c|objectivec|objective-c)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.objc
       embed_scope: markup.raw.code-fence.liquid.jekyll source.objc.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1235,22 +1062,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-objcpp:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:objc\+\+|obj-c\+\+|objectivec\+\+|objective-c\+\+))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:objc\+\+|obj-c\+\+|objectivec\+\+|objective-c\+\+)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.objc++
       embed_scope: markup.raw.code-fence.liquid.jekyll source.objc++.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1259,22 +1079,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-ocaml:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:ocaml))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:ocaml)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.ocaml
       embed_scope: markup.raw.code-fence.liquid.jekyll source.ocaml.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1283,22 +1096,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-perl:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:perl))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:perl)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.perl
       embed_scope: markup.raw.code-fence.liquid.jekyll source.perl.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1307,22 +1113,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-php:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:php|inc))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:php|inc)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.php
       embed_scope: markup.raw.code-fence.liquid.jekyll source.php.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1331,22 +1130,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-python:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:python|py))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:python|py)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.python
       embed_scope: markup.raw.code-fence.liquid.jekyll source.python.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1355,22 +1147,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-regexp:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:regexp?))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:regexp?)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.regexp
       embed_scope: markup.raw.code-fence.liquid.jekyll source.regexp.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1379,22 +1164,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-rscript:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:rscript|r|splus))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:rscript|r|splus)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.r
       embed_scope: markup.raw.code-fence.liquid.jekyll source.r.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1403,22 +1181,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-ruby:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:ruby|rb|rbx))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:ruby|rb|rbx)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.ruby
       embed_scope: markup.raw.code-fence.liquid.jekyll source.ruby.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1427,22 +1198,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-rust:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:rust|rs))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:rust|rs)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.rust
       embed_scope: markup.raw.code-fence.liquid.jekyll source.rust.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1451,22 +1215,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-scala:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:scala))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:scala)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.scala
       embed_scope: markup.raw.code-fence.liquid.jekyll source.scala.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1475,22 +1232,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-shell:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:console|shell))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:console|shell)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.shell.interactive.markdown
       embed_scope: markup.raw.code-fence.liquid.jekyll source.shell.interactive.markdown.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1499,22 +1249,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-shell-script:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:shell-script|sh|bash|zsh))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:shell-script|sh|bash|zsh)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.shell.bash
       embed_scope: markup.raw.code-fence.liquid.jekyll source.shell.bash.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1523,22 +1266,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-sql:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:sql))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:sql)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.sql
       embed_scope: markup.raw.code-fence.liquid.jekyll source.sql.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1547,22 +1283,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-tsx:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:tsx))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:tsx)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.tsx
       embed_scope: markup.raw.code-fence.liquid.jekyll source.tsx.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1571,22 +1300,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-typescript:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:typescript|ts))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:typescript|ts)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.ts
       embed_scope: markup.raw.code-fence.liquid.jekyll source.ts.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1595,22 +1317,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-xml:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:atom|plist|svg|xjb|xml|xsd|xsl))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:atom|plist|svg|xjb|xml|xsd|xsl)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:text.xml
       embed_scope: markup.raw.code-fence.liquid.jekyll text.xml.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1619,22 +1334,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-yaml:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:yaml|yml))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:yaml|yml)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.yaml
       embed_scope: markup.raw.code-fence.liquid.jekyll source.yaml.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1643,22 +1351,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-ada:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:ada))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:ada)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.ada
       embed_scope: markup.raw.code-fence.liquid.jekyll source.ada.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1667,22 +1368,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-akh:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:akh))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:akh)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.akh
       embed_scope: markup.raw.code-fence.liquid.jekyll source.akh.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1691,22 +1385,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-arduino:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:arduino|ino))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:arduino|ino)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.arduino
       embed_scope: markup.raw.code-fence.liquid.jekyll source.arduino.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1715,22 +1402,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-coffee:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:coffee(?:script)?|cjsx|cson|iced))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:coffee(?:script)?|cjsx|cson|iced)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.coffee
       embed_scope: markup.raw.code-fence.liquid.jekyll source.coffee.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1739,22 +1419,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-dart:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:dart))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:dart)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.dart
       embed_scope: markup.raw.code-fence.liquid.jekyll source.dart.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1763,22 +1436,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-docker:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:docker(?:file)?))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:docker(?:file)?)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.shell.docker
       embed_scope: markup.raw.code-fence.liquid.jekyll source.shell.docker.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1787,22 +1453,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-elixir:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:elixir))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:elixir)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.elixir
       embed_scope: markup.raw.code-fence.liquid.jekyll source.elixir.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1811,22 +1470,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-fish:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:fish))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:fish)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.shell.fish
       embed_scope: markup.raw.code-fence.liquid.jekyll source.shell.fish.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1835,22 +1487,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-graphql:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:graphql))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:graphql)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.graphql
       embed_scope: markup.raw.code-fence.liquid.jekyll source.graphql.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1859,22 +1504,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-http:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:http))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:http)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:text.http-request-response
       embed_scope: markup.raw.code-fence.liquid.jekyll text.http-request-response.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1883,22 +1521,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-ini:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:ini))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:ini)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.ini
       embed_scope: markup.raw.code-fence.liquid.jekyll source.ini.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1907,22 +1538,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-jade:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:jade))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:jade)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.jade
       embed_scope: markup.raw.code-fence.liquid.jekyll source.jade.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1931,22 +1555,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-julia:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:julia))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:julia)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.julia
       embed_scope: markup.raw.code-fence.liquid.jekyll source.julia.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1955,22 +1572,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-kotlin:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:kotlin))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:kotlin)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.kotlin
       embed_scope: markup.raw.code-fence.liquid.jekyll source.kotlin.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -1979,22 +1589,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-less:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:less))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:less)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.less
       embed_scope: markup.raw.code-fence.liquid.jekyll source.less.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2003,22 +1606,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-mermaid:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:mermaid))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:mermaid)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.mermaid
       embed_scope: markup.raw.code-fence.liquid.jekyll source.mermaid.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2027,22 +1623,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-nim:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:nim))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:nim)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.nim
       embed_scope: markup.raw.code-fence.liquid.jekyll source.nim.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2051,22 +1640,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-powershell:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:pwsh|powershell))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:pwsh|powershell)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.powershell
       embed_scope: markup.raw.code-fence.liquid.jekyll source.powershell.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2075,22 +1657,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-protobuf:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:protobuf))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:protobuf)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.proto
       embed_scope: markup.raw.code-fence.liquid.jekyll source.proto.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2099,22 +1674,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-reason:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:re|reason))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:re|reason)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.reason
       embed_scope: markup.raw.code-fence.liquid.jekyll source.reason.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2123,22 +1691,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-sass:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:sass))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:sass)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.sass
       embed_scope: markup.raw.code-fence.liquid.jekyll source.sass.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2147,22 +1708,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-scheme:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:scheme))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:scheme)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.scheme
       embed_scope: markup.raw.code-fence.liquid.jekyll source.scheme.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2171,22 +1725,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-scss:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:scss))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:scss)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.scss
       embed_scope: markup.raw.code-fence.liquid.jekyll source.scss.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2195,22 +1742,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-stata:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:s|stata|\{s\}|\{s[\s,].*\}|\{stata\}|\{stata[\s,].*\}))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:s|stata|\{s\}|\{s[\s,].*\}|\{stata\}|\{stata[\s,].*\})){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.stata
       embed_scope: markup.raw.code-fence.liquid.jekyll source.stata.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2219,22 +1759,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-svelte:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:svelte))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:svelte)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:text.html.svelte
       embed_scope: markup.raw.code-fence.liquid.jekyll text.html.svelte.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2243,22 +1776,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-swift:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:swift))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:swift)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.swift
       embed_scope: markup.raw.code-fence.liquid.jekyll source.swift.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2267,22 +1793,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-terraform:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:terraform|tf|hcl))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:terraform|tf|hcl)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.json.terraform
       embed_scope: markup.raw.code-fence.liquid.jekyll source.json.terraform.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2291,22 +1810,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-toml:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:toml))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:toml)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.toml
       embed_scope: markup.raw.code-fence.liquid.jekyll source.toml.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2315,22 +1827,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-twig:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:twig|craftcms))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:twig|craftcms)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:text.html.twig
       embed_scope: markup.raw.code-fence.liquid.jekyll text.html.twig.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2339,22 +1844,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-verilog:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:verilog|v))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:verilog|v)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.verilog
       embed_scope: markup.raw.code-fence.liquid.jekyll source.verilog.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2363,22 +1861,15 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
   jekyll-highlight-xonsh:
-    - match: |-
-        (?x)
-        (
-          {{jekyll_highlight_begin}}
-          ((?i:xonsh|xsh))
-          {{jekyll_highlight_params}}
-        )\s*
+    - match: (((?i:xonsh|xsh)){{jekyll_highlight_params}})\s*
       captures:
         1: meta.tag.liquid
-        2: punctuation.definition.tag.begin.liquid
-        3: keyword.declaration.highlight.liquid.jekyll
-        4: constant.other.language-name.liquid.jekyll
-        5: constant.other.liquid.jekyll
-        6: punctuation.definition.tag.end.liquid
+        2: constant.other.language-name.liquid.jekyll
+        3: constant.other.liquid.jekyll
+        4: punctuation.definition.tag.end.liquid
       embed: scope:source.xonsh
       embed_scope: markup.raw.code-fence.liquid.jekyll source.xonsh.embedded.liquid.jekyll
       escape: '{{jekyll_highlight_escape}}'
@@ -2387,6 +1878,7 @@ contexts:
         2: punctuation.definition.tag.begin.liquid
         3: keyword.declaration.highlight.liquid.jekyll
         4: punctuation.definition.tag.end.liquid
+      pop: 1
 
 ###[ JEKYLL OBJECT EXTENSIONS ]###############################################
 
