@@ -16,11 +16,12 @@ contexts:
     - include: scope:source.liquid
 
   main:
-    - include: frontmatter
+    - meta_include_prototype: false
     - match: ''
-      set: html
+      set: [html, frontmatter]
 
   frontmatter:
+    - meta_include_prototype: false
     - match: (---)\s*(?i:(ya?ml)\s*)?\n
       captures:
         0: meta.frontmatter.jekyll
@@ -32,6 +33,10 @@ contexts:
       escape_captures:
         0: meta.frontmatter.jekyll
         1: punctuation.section.block.end.frontmatter.jekyll
+      pop: 1
+    # Ensure to highlight frontmatter if the syntax is embedded, but pop as early as possible
+    - match: ^|(?=\S)
+      pop: 1
 
 ###[ CUSTOM HTML ]############################################################
 
