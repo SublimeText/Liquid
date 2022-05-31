@@ -33,14 +33,6 @@ contexts:
         0: meta.frontmatter.jekyll
         1: punctuation.section.block.end.frontmatter.jekyll
 
-  html:
-    - include: preprocessor
-    - include: doctype
-    - include: comment
-    - include: cdata
-    - include: tag
-    - include: entities
-
 ###[ CUSTOM HTML ]############################################################
 
   cdata-content:
