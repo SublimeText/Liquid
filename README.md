@@ -4,7 +4,7 @@ Provides syntax highlighting for HTML and Markdown files with [Shopify Liquid](h
 
 For working with [Jekyll](https://jekyllrb.com), this package also provides proper syntax highlighting for yaml front matter.
 
-![screenshot](screenshot.png)
+![](preview.png)
 
 ## Usage
 
