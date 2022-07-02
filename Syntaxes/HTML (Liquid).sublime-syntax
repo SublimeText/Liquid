@@ -38,6 +38,14 @@ contexts:
     - match: ^|(?=\S)
       pop: 1
 
+  html:
+    - include: preprocessor
+    - include: doctype
+    - include: comment
+    - include: cdata
+    - include: tag
+    - include: entities
+
 ###[ CUSTOM HTML ]############################################################
 
   cdata-content:
