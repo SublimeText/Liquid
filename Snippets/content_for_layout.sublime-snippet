@@ -4,5 +4,5 @@
 ]]></content>
 <tabTrigger>cfl</tabTrigger>
 <description>liquid content_for_layout</description>
-<scope>text.html</scope>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - (meta.tag.liquid | meta.object.liquid)</scope>
 </snippet>

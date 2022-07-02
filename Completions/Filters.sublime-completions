@@ -1,0 +1,245 @@
+{
+	"scope": "meta.filter.liquid",
+	"completions": [
+		{
+			"trigger": "abs",
+			"kind": ["function", "f", "filter"],
+			"details": "Returns the absolute value of a number.",
+		},
+		{
+			"trigger": "append",
+			"kind": ["function", "f", "filter"],
+			"details": "Adds the specified string to the end of another string.",
+		},
+		{
+			"trigger": "at_least",
+			"kind": ["function", "f", "filter"],
+			"details": "Limits a number to a minimum value.",
+		},
+		{
+			"trigger": "at_most",
+			"kind": ["function", "f", "filter"],
+			"details": "Limits a number to a maximum value.",
+		},
+		{
+			"trigger": "capitalize",
+			"kind": ["function", "f", "filter"],
+			"details": "Makes the first character of a string capitalized and converts the remaining characters to lowercase.",
+		},
+		{
+			"trigger": "ceil",
+			"kind": ["function", "f", "filter"],
+			"details": "Rounds an input up to the nearest whole number.",
+		},
+		{
+			"trigger": "compact",
+			"kind": ["function", "f", "filter"],
+			"details": "Removes any <code>nil</code> values from an array.",
+		},
+		{
+			"trigger": "concat",
+			"kind": ["function", "f", "filter"],
+			"details": "Concatenates (joins together) multiple arrays.",
+		},
+		{
+			"trigger": "date",
+			"kind": ["function", "f", "filter"],
+			"details": "Converts a timestamp into another date format.",
+		},
+		{
+			"trigger": "default",
+			"kind": ["function", "f", "filter"],
+			"details": "Sets a default value for any variable with no assigned value.",
+		},
+		{
+			"trigger": "divided_by",
+			"kind": ["function", "f", "filter"],
+			"details": "Divides a number by another number.",
+		},
+		{
+			"trigger": "downcase",
+			"kind": ["function", "f", "filter"],
+			"details": "Makes each character in a string lowercase.",
+		},
+		{
+			"trigger": "escape",
+			"kind": ["function", "f", "filter"],
+			"details": "Escapes a string by replacing characters with escape sequences.",
+		},
+		{
+			"trigger": "escape_once",
+			"kind": ["function", "f", "filter"],
+			"details": "Escapes a string without changing existing escaped entities.",
+		},
+		{
+			"trigger": "first",
+			"kind": ["function", "f", "filter"],
+			"details": "Returns the first item of an array.",
+		},
+		{
+			"trigger": "floor",
+			"kind": ["function", "f", "filter"],
+			"details": "Rounds an input down to the nearest whole number.",
+		},
+		{
+			"trigger": "join",
+			"kind": ["function", "f", "filter"],
+			"details": "Combines the items in an array into a single string using the argument as a separator.",
+		},
+		{
+			"trigger": "last",
+			"kind": ["function", "f", "filter"],
+			"details": "Returns the last item of an array.",
+		},
+		{
+			"trigger": "lstrip",
+			"kind": ["function", "f", "filter"],
+			"details": "Removes all whitespace (tabs, spaces, and newlines) from the <b>left</b> side of a string.",
+		},
+		{
+			"trigger": "map",
+			"kind": ["function", "f", "filter"],
+			"details": "Creates an array of values by extracting the values of a named property from another object.",
+		},
+		{
+			"trigger": "minus",
+			"kind": ["function", "f", "filter"],
+			"details": "Subtracts a number from another number.",
+		},
+		{
+			"trigger": "modulo",
+			"kind": ["function", "f", "filter"],
+			"details": "Returns the remainder of a division operation.",
+		},
+		{
+			"trigger": "newline_to_br",
+			"kind": ["function", "f", "filter"],
+			"details": "Inserts an HTML line break (<code>&lt;br /&gt;</code>) in front of each newline (<code>\\n</code>) in a string.",
+		},
+		{
+			"trigger": "plus",
+			"kind": ["function", "f", "filter"],
+			"details": "Adds a number to another number.",
+		},
+		{
+			"trigger": "prepend",
+			"kind": ["function", "f", "filter"],
+			"details": "Adds the specified string to the beginning of another string.",
+		},
+		{
+			"trigger": "remove",
+			"kind": ["function", "f", "filter"],
+			"details": "Removes every occurrence of the specified substring from a string.",
+		},
+		{
+			"trigger": "remove_first",
+			"kind": ["function", "f", "filter"],
+			"details": "Removes only the first occurrence of the specified substring from a string.",
+		},
+		{
+			"trigger": "replace",
+			"kind": ["function", "f", "filter"],
+			"details": "Replaces every occurrence of the first argument in a string with the second argument.",
+		},
+		{
+			"trigger": "replace_first",
+			"kind": ["function", "f", "filter"],
+			"details": "Replaces only the first occurrence of the first argument in a string with the second argument.",
+		},
+		{
+			"trigger": "reverse",
+			"kind": ["function", "f", "filter"],
+			"details": "Reverses the order of the items in an array.",
+		},
+		{
+			"trigger": "round",
+			"kind": ["function", "f", "filter"],
+			"details": "Rounds a number to the nearest integer or, if a number is passed as an argument, to that number of decimal places.",
+		},
+		{
+			"trigger": "rstrip",
+			"kind": ["function", "f", "filter"],
+			"details": "Removes all whitespace (tabs, spaces, and newlines) from the <b>right</b> side of a string.",
+		},
+		{
+			"trigger": "size",
+			"kind": ["function", "f", "filter"],
+			"details": "Returns the number of characters in a string or the number of items in an array.",
+		},
+		{
+			"trigger": "slice",
+			"kind": ["function", "f", "filter"],
+			"details": "Returns a substring of one character or series of array items.",
+		},
+		{
+			"trigger": "sort",
+			"kind": ["function", "f", "filter"],
+			"details": "Sorts items in an array in case-sensitive order.",
+		},
+		{
+			"trigger": "sort_natural",
+			"kind": ["function", "f", "filter"],
+			"details": "Sorts items in an array in case-insensitive order.",
+		},
+		{
+			"trigger": "split",
+			"kind": ["function", "f", "filter"],
+			"details": "Divides a string into an array using the argument as a separator.",
+		},
+		{
+			"trigger": "strip",
+			"kind": ["function", "f", "filter"],
+			"details": "Removes all whitespace (tabs, spaces, and newlines) from both the left and right sides of a string.",
+		},
+		{
+			"trigger": "strip_html",
+			"kind": ["function", "f", "filter"],
+			"details": "Removes any HTML tags from a string.",
+		},
+		{
+			"trigger": "strip_newlines",
+			"kind": ["function", "f", "filter"],
+			"details": "Removes any newline characters (line breaks) from a string.",
+		},
+		{
+			"trigger": "times",
+			"kind": ["function", "f", "filter"],
+			"details": "Multiplies a number by another number.",
+		},
+		{
+			"trigger": "truncate",
+			"kind": ["function", "f", "filter"],
+			"details": "Shortens a string down to the number of characters passed as an argument.",
+		},
+		{
+			"trigger": "truncatewords",
+			"kind": ["function", "f", "filter"],
+			"details": "Shortens a string down to the number of words passed as an argument.",
+		},
+		{
+			"trigger": "uniq",
+			"kind": ["function", "f", "filter"],
+			"details": "Removes any duplicate items in an array.",
+		},
+		{
+			"trigger": "upcase",
+			"kind": ["function", "f", "filter"],
+			"details": "Makes each character in a string uppercase.",
+		},
+		{
+			"trigger": "url_decode",
+			"kind": ["function", "f", "filter"],
+			"details": "Decodes a string that has been encoded as a URL or by <code>url_encode</code>.",
+		},
+		{
+			"trigger": "url_encode",
+			"kind": ["function", "f", "filter"],
+			"details": "Converts any URL-unsafe characters in a string into percent-encoded characters.",
+		},
+		{
+			"trigger": "where",
+			"kind": ["function", "f", "filter"],
+			"details": "Creates an array including only the objects with a given property value, or any truthy value by default.",
+		},
+	]
+}

@@ -1,0 +1,162 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: HTML (Liquid)
+scope: text.html.liquid
+version: 2
+
+extends: Packages/HTML/HTML.sublime-syntax
+
+file_extensions:
+  - liquid
+
+contexts:
+  prototype:
+    - meta_prepend: true
+    - include: scope:source.liquid
+
+  main:
+    - meta_include_prototype: false
+    - match: ''
+      set: [html, frontmatter]
+
+  frontmatter:
+    - meta_include_prototype: false
+    - match: (---)\s*(?i:(ya?ml)\s*)?\n
+      captures:
+        0: meta.frontmatter.jekyll
+        1: punctuation.section.block.begin.frontmatter.jekyll
+        2: constant.other.language-name.jekyll
+      embed: scope:source.yaml
+      embed_scope: meta.frontmatter.jekyll source.yaml.embedded.jekyll
+      escape: ^(---|\.{3})\s*\n  # pandoc requires the remainder of the line to be blank
+      escape_captures:
+        0: meta.frontmatter.jekyll
+        1: punctuation.section.block.end.frontmatter.jekyll
+      pop: 1
+    # Ensure to highlight frontmatter if the syntax is embedded, but pop as early as possible
+    - match: ^|(?=\S)
+      pop: 1
+
+###[ CUSTOM HTML ]############################################################
+
+  cdata-content:
+    - meta_prepend: true
+    - meta_include_prototype: false
+    - include: scope:source.liquid#interpolations
+
+  script-javascript-content:
+    - meta_include_prototype: false
+    - match: \s*((<!\[)(CDATA)(\[))
+      captures:
+        1: meta.tag.sgml.cdata.html
+        2: punctuation.definition.tag.begin.html
+        3: keyword.declaration.cdata.html
+        4: punctuation.definition.tag.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.js.liquid
+      embed_scope: meta.tag.sgml.cdata.html source.js.embedded.html
+      escape: \]\]>
+      escape_captures:
+        0: meta.tag.sgml.cdata.html punctuation.definition.tag.end.html
+    - match: '{{script_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.js.liquid
+      embed_scope: source.js.embedded.html
+      escape: '{{script_content_end}}'
+      escape_captures:
+        1: source.js.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.js.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  style-css-content:
+    - meta_include_prototype: false
+    - match: \s*((<!\[)(CDATA)(\[))
+      captures:
+        1: meta.tag.sgml.cdata.html
+        2: punctuation.definition.tag.begin.html
+        3: keyword.declaration.cdata.html
+        4: punctuation.definition.tag.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.css.liquid
+      embed_scope: meta.tag.sgml.cdata.html source.css.embedded.html
+      escape: \]\]>
+      escape_captures:
+        0: meta.tag.sgml.cdata.html punctuation.definition.tag.end.html
+    - match: '{{style_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.css.liquid
+      embed_scope: source.css.embedded.html
+      escape: '{{style_content_end}}'
+      escape_captures:
+        1: source.css.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.css.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  tag-event-attribute-value:
+    - match: \"
+      scope:
+        meta.string.html string.quoted.double.html
+        punctuation.definition.string.begin.html
+      embed: scope:source.js.liquid
+      embed_scope:
+        meta.string.html meta.interpolation.html
+        source.js.embedded.html
+      escape: \"
+      escape_captures:
+        0: meta.string.html string.quoted.double.html
+           punctuation.definition.string.end.html
+    - match: \'
+      scope:
+        meta.string.html string.quoted.single.html
+        punctuation.definition.string.begin.html
+      embed: scope:source.js.liquid
+      embed_scope:
+        meta.string.html meta.interpolation.html
+        source.js.embedded.html
+      escape: \'
+      escape_captures:
+        0: meta.string.html string.quoted.single.html
+           punctuation.definition.string.end.html
+    - include: else-pop
+
+  tag-style-attribute-value:
+    - match: \"
+      scope:
+        meta.string.html string.quoted.double.html
+        punctuation.definition.string.begin.html
+      embed: scope:source.css.liquid#rule-list-body
+      embed_scope:
+        meta.string.html meta.interpolation.html
+        source.css.embedded.html
+      escape: \"
+      escape_captures:
+        0: meta.string.html string.quoted.double.html
+           punctuation.definition.string.end.html
+    - match: \'
+      scope:
+        meta.string.html string.quoted.single.html
+        punctuation.definition.string.begin.html
+      embed: scope:source.css.liquid#rule-list-body
+      embed_scope:
+        meta.string.html meta.interpolation.html
+        source.css.embedded.html
+      escape: \'
+      escape_captures:
+        0: meta.string.html string.quoted.single.html
+           punctuation.definition.string.end.html
+    - include: else-pop
+
+  tag-attribute-value-content:
+    - meta_prepend: true
+    - include: scope:source.liquid#interpolations
+
+  strings-common-content:
+    - meta_prepend: true
+    - include: scope:source.liquid#interpolations

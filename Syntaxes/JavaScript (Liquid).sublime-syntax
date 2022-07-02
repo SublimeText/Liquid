@@ -1,0 +1,22 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: JavaScript (Liquid)
+scope: source.js.liquid
+version: 2
+
+extends: Packages/JavaScript/JavaScript.sublime-syntax
+
+file_extensions:
+  - js.liquid
+  - liquid.js
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: scope:source.liquid
+
+  string-content:
+    - meta_prepend: true
+    - include: scope:source.liquid#interpolations
