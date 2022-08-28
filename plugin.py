@@ -46,6 +46,7 @@ def create_markdown_syntax():
 
     # check existance and content to avoid touching unchanged files
     try:
+        syntax_file.parent.mkdir(parents=True, exist_ok=True)
         with open(syntax_file) as f:
             if f.read() == syntax_content:
                 return
