@@ -1,8 +1,8 @@
 <snippet>
 <content><![CDATA[
-{% assign ${1:variable} = ${2:value} %}
+${TM_TEMPLATE_START}assign ${1:variable} = ${0:value}${TM_TEMPLATE_END}
 ]]></content>
 <tabTrigger>assign</tabTrigger>
 <description>liquid assign</description>
-<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - (meta.embedded.liquid source.liquid meta.statement.liquid | meta.interpolation.liquid)</scope>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
 </snippet>

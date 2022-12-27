@@ -1,8 +1,6 @@
 <snippet>
-<content><![CDATA[
-{{ content_for_layout }}
-]]></content>
+<content><![CDATA[{{ content_for_layout }}]]></content>
 <tabTrigger>cfl</tabTrigger>
 <description>liquid content_for_layout</description>
-<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - (meta.embedded.liquid source.liquid meta.statement.liquid | meta.interpolation.liquid)</scope>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) -  meta.interpolation.liquid</scope>
 </snippet>

@@ -1,8 +1,8 @@
 <snippet>
 <content><![CDATA[
-{% cycle '${1:first value}', '${2:second value}' %}
+${TM_TEMPLATE_START}cycle '${1:first value}', '${2:second value}'${TM_TEMPLATE_END}
 ]]></content>
 <tabTrigger>cycle</tabTrigger>
 <description>liquid cycle</description>
-<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - (meta.embedded.liquid source.liquid meta.statement.liquid | meta.interpolation.liquid)</scope>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
 </snippet>

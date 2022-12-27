@@ -1,10 +1,10 @@
 <snippet>
 <content><![CDATA[
-{% for ${1:element} in ${2:collection} %}
-	${3}
-{% endfor %}
+${TM_TEMPLATE_START}for ${1:element} in ${2:collection}${TM_TEMPLATE_END}
+	$0
+${TM_TEMPLATE_START}endfor${TM_TEMPLATE_END}
 ]]></content>
 <tabTrigger>for</tabTrigger>
 <description>liquid for loop</description>
-<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - (meta.embedded.liquid source.liquid meta.statement.liquid | meta.interpolation.liquid)</scope>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
 </snippet>

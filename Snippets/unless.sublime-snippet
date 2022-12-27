@@ -1,10 +1,10 @@
 <snippet>
 <content><![CDATA[
-{% unless ${1:condition} %}
-	${2:what to do}
-{% endunless %}
+${TM_TEMPLATE_START}unless ${1:condition}${TM_TEMPLATE_END}
+	$0
+${TM_TEMPLATE_START}endunless${TM_TEMPLATE_END}
 ]]></content>
 <tabTrigger>unless</tabTrigger>
 <description>liquid unless</description>
-<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - (meta.embedded.liquid source.liquid meta.statement.liquid | meta.interpolation.liquid)</scope>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
 </snippet>
