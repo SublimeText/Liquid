@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+${TM_TEMPLATE_START}javascript${TM_TEMPLATE_END}
+	$0
+${TM_TEMPLATE_START}endjavascript${TM_TEMPLATE_END}
+]]></content>
+<tabTrigger>js</tabTrigger>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
+<description>liquid javascript</description>
+</snippet>

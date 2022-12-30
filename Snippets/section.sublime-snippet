@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+${TM_TEMPLATE_START}section '${1:name}'${TM_TEMPLATE_END}
+    $0
+${TM_TEMPLATE_START}endsection${TM_TEMPLATE_END}
+]]></content>
+<tabTrigger>section</tabTrigger>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
+<description>liquid section</description>
+</snippet>

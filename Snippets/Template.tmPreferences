@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+	<!--
+	Template begin and end punctuation to wrap snippets into,
+	when expanding within plain HTML, Markdown, CSS or JavaScript code.
+
+	These variables are used to share snippets accross
+	plain text and template source code.
+	 -->
+	<key>scope</key>
+	<string>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - - source.liquid - meta.interpolation.liquid</string>
+	<key>settings</key>
+	<dict>
+		<key>shellVariables</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>TM_TEMPLATE_START</string>
+				<key>value</key>
+				<string><![CDATA[{% ]]></string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>TM_TEMPLATE_END</string>
+				<key>value</key>
+				<string><![CDATA[ %}]]></string>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,6 @@
+<snippet>
+<content><![CDATA[${TM_TEMPLATE_START}endif${TM_TEMPLATE_END}]]></content>
+<tabTrigger>endif</tabTrigger>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
+<description>liquid endif</description>
+</snippet>
