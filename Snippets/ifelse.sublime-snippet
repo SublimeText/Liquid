@@ -1,12 +1,12 @@
 <snippet>
 <content><![CDATA[
-{% if ${1:condition} %}
-	${2:what to do}
-{% else %}
-	${3:what to do else}
-{% endif %}
+${TM_TEMPLATE_START}if ${1:condition}${TM_TEMPLATE_END}
+	$2
+${TM_TEMPLATE_START}else${TM_TEMPLATE_END}
+	$0
+${TM_TEMPLATE_START}endif${TM_TEMPLATE_END}
 ]]></content>
 <tabTrigger>ifelse</tabTrigger>
 <description>liquid if else</description>
-<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - (meta.tag.liquid | meta.object.liquid)</scope>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
 </snippet>

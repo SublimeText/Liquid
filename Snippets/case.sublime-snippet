@@ -1,11 +1,11 @@
 <snippet>
 <content><![CDATA[
-{% case ${1:variable} %}
-	{% when '${2:matching?}' %}
-	${3}
-{% endcase %}
+${TM_TEMPLATE_START}case ${1:variable}${TM_TEMPLATE_END}
+	${TM_TEMPLATE_START}when '${2:matching?}'${TM_TEMPLATE_END}
+		$0
+${TM_TEMPLATE_START}endcase${TM_TEMPLATE_END}
 ]]></content>
 <tabTrigger>case</tabTrigger>
 <description>liquid case switch</description>
-<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - (meta.tag.liquid | meta.object.liquid)</scope>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
 </snippet>

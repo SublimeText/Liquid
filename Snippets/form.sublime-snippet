@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+${TM_TEMPLATE_START}form '${1:name}'${TM_TEMPLATE_END}
+    $0
+${TM_TEMPLATE_START}endform${TM_TEMPLATE_END}
+]]></content>
+<tabTrigger>form</tabTrigger>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
+<description>liquid form</description>
+</snippet>

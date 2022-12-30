@@ -1,10 +1,10 @@
 <snippet>
 <content><![CDATA[
-{% capture ${1:name} %}
-	${2:content}
-{% endcapture %}
+${TM_TEMPLATE_START}capture ${1:name}${TM_TEMPLATE_END}
+	$0
+${TM_TEMPLATE_START}endcapture${TM_TEMPLATE_END}
 ]]></content>
 <tabTrigger>capture</tabTrigger>
 <description>liquid capture</description>
-<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - (meta.tag.liquid | meta.object.liquid)</scope>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
 </snippet>

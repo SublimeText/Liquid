@@ -1,0 +1,6 @@
+<snippet>
+<content><![CDATA[${TM_TEMPLATE_START}block${2: ${1:header}}${TM_TEMPLATE_END}$0${TM_TEMPLATE_START}endblock${TM_TEMPLATE_END}]]></content>
+<tabTrigger>block</tabTrigger>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
+<description>liquid block</description>
+</snippet>

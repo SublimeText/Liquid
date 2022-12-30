@@ -1,9 +1,10 @@
 <snippet>
 <content><![CDATA[
-${TM_TEMPLATE_START}when '${1:matching?}'${TM_TEMPLATE_END}
+${TM_TEMPLATE_START}style${TM_TEMPLATE_END}
 	$0
+${TM_TEMPLATE_START}endstyle${TM_TEMPLATE_END}
 ]]></content>
-<tabTrigger>when</tabTrigger>
-<description>liquid when</description>
+<tabTrigger>style</tabTrigger>
 <scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
+<description>liquid style</description>
 </snippet>
