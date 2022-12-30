@@ -6,5 +6,5 @@
 ]]></content>
 <tabTrigger>for</tabTrigger>
 <description>liquid for loop</description>
-<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - (meta.tag.liquid | meta.object.liquid)</scope>
+<scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - (meta.embedded.liquid source.liquid meta.statement.liquid | meta.interpolation.liquid)</scope>
 </snippet>
