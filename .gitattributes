@@ -2,3 +2,4 @@
 /.gitattributes     export-ignore
 /.gitignore         export-ignore
 *.cmd				export-ignore
+*.png               export-ignore
