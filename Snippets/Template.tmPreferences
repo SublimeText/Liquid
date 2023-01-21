@@ -9,7 +9,7 @@
 	plain text and template source code.
 	 -->
 	<key>scope</key>
-	<string>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - - source.liquid - meta.interpolation.liquid</string>
+	<string>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - source.liquid - meta.interpolation.liquid</string>
 	<key>settings</key>
 	<dict>
 		<key>shellVariables</key>
