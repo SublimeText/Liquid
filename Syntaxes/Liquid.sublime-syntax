@@ -162,6 +162,7 @@ contexts:
 
   liquid-tag-statements:
     - include: jekyll-links
+    - include: liquid-line-comments
     - include: liquid-assignments
     - include: liquid-conditionals
     - include: liquid-iterations
@@ -197,6 +198,7 @@ contexts:
 
   liquid-object-content:
     - include: jekyll-variables
+    - include: liquid-line-comments
     - include: liquid-constants
     - include: liquid-filters
     - include: liquid-item-access
@@ -215,6 +217,18 @@ contexts:
     - match: \b(?:decrement|increment)\b
       scope: support.function.liquid
       push: liquid-tag-expression
+
+###[ LIQUID COMMENTS ]########################################################
+
+  liquid-line-comments:
+    - match: \#+
+      scope: punctuation.definition.comment.liquid
+      push: liquid-line-comment-body
+
+  liquid-line-comment-body:
+    - meta_scope: comment.line.number-sign.liquid
+    - match: \n
+      pop: 1
 
 ###[ LIQUID CONTITIONALS ]####################################################
 
