@@ -5,6 +5,33 @@
  --- https://shopify.github.io/liquid/tags/control-flow
  -->
 
+{% # for i in (1..3) -%}
+|^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+|  ^^^^^^^^^^^^^^^^^^ comment.line.number-sign.liquid
+|  ^ punctuation.definition.comment.liquid
+|                    ^^^ punctuation.section.embedded.end.liquid - comment
+  {{ i }}
+{% # endfor %}
+|^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+|  ^^^^^^^^^ comment.line.number-sign.liquid
+|  ^ punctuation.definition.comment.liquid
+|           ^^ punctuation.section.embedded.end.liquid - comment
+
+{%
+  ###############################
+  # This is a comment
+  # across multiple lines
+  ###############################
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid comment.line.number-sign.liquid punctuation.definition.comment.liquid
+%}
+| <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.end.liquid - comment
+
+{% liquid
+  # this is a comment
+| ^^^^^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid comment.line.number-sign.liquid
+| ^ punctuation.definition.comment.liquid
+%}
+
 {% if true %}
 | <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
 |^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
