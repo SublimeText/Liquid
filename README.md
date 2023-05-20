@@ -22,7 +22,7 @@ The easiest way to install is using [Package Control](https://packagecontrol.io)
    _The `st4xxx` suffix denotes the least required ST build for the sublime-package to work._
 2. Rename it to _Liquid.sublime-package_
 3. Copy it into _Installed Packages_ directory
-   
+
 > To find _Installed Packages_...
 >
 > 1. call _Menu > Preferences > Browse Packages.._
@@ -33,3 +33,15 @@ The easiest way to install is using [Package Control](https://packagecontrol.io)
 To enable the syntax, select `Liquid > HTML (Liquid)` or `Liquid > Markdown (Liquid)` from syntax selection menu or via Command Palette.
 
 To always open your templates with this syntax, use the `Open all with current extension as ...` option, and select the proper Liquid syntax.
+
+## Troubleshooting
+
+Liquid extends Sublime Text's HTML, Markdown, CSS and JavaScript, syntax definitions.
+
+If Liquid syntax highlighting doesn't work and console displays syntax errors in e.g.: _HTML (Liquid).sublime-syntax_ or _Markdown (Liquid).sublime-syntax_, please make sure to remove any out-dated syntax override.
+
+Steps:
+
+1. call _Menu > Preferences > Browse Packages.._
+2. Look for _CSS_, _HTML_, _JavaScript_, _Markdown_ folder
+3. Remove them or at least delete any syntax definition in them
