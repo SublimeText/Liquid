@@ -21,34 +21,34 @@ contexts:
     - include: liquid
 
   liquid:
-    - match: (?={[{%])
-      push: liquid-content
-
-  liquid-content:
-    - include: jekyll-highlights
-    - include: liquid-comments
-    - include: liquid-schemas
-    - include: liquid-objects
-    - include: liquid-javascript
-    - include: liquid-style
-    - include: liquid-raw
     - include: liquid-tags
-    - include: immediately-pop
+    - include: liquid-objects
+
+  liquid-tags:
+    - include: jekyll-highlight-tags
+    - include: liquid-comment-tags
+    - include: liquid-schema-tags
+    - include: liquid-javascript-tags
+    - include: liquid-style-tags
+    - include: liquid-raw-tags
+    - include: liquid-statement-tags
 
 ###[ LIQUID INTERPOLATIONS ]##################################################
 
   interpolations:
     - match: (?={[{%])
-      push: interpolation-content
+      push: interpolation-body
 
-  interpolation-content:
+  interpolation-body:
     - clear_scopes: 1
     - meta_include_prototype: false
-    - include: liquid-content
+    - include: liquid-tags
+    - include: liquid-objects
+    - include: immediately-pop
 
 ###[ LIQUID COMMENT TAGS ]####################################################
 
-  liquid-comments:
+  liquid-comment-tags:
     # https://shopify.github.io/liquid/tags/template
     - match: ({%-?)\s*(comment)\s*(-?%})
       scope: meta.statement.liquid
@@ -56,9 +56,9 @@ contexts:
         1: punctuation.section.embedded.begin.liquid
         2: keyword.declaration.comment.liquid
         3: punctuation.section.embedded.end.liquid
-      push: liquid-comment-content
+      push: liquid-comment-tag-body
 
-  liquid-comment-content:
+  liquid-comment-tag-body:
     - meta_scope: meta.embedded.liquid source.liquid
     - meta_content_scope: comment.block.liquid
     - match: ({%-?)\s*(endcomment)\s*(-?%})
@@ -71,7 +71,7 @@ contexts:
 
 ###[ LIQUID JAVASCRIPT TAGS ]##################################################
 
-  liquid-javascript:
+  liquid-javascript-tags:
     - match: ({%-?)\s*(javascript)\s*(-?%})
       scope: meta.embedded.liquid source.liquid meta.statement.liquid
       captures:
@@ -89,7 +89,7 @@ contexts:
 
 ###[ LIQUID RAW TAGS ]#########################################################
 
-  liquid-raw:
+  liquid-raw-tags:
     # https://shopify.github.io/liquid/tags/template
     - match: ({%)\s*(raw)\s*(%})
       scope: meta.embedded.liquid source.liquid meta.statement.liquid
@@ -97,9 +97,9 @@ contexts:
         1: punctuation.section.embedded.begin.liquid
         2: keyword.declaration.raw.liquid
         3: punctuation.section.embedded.end.liquid
-      push: liquid-raw-content
+      push: liquid-raw-tag-body
 
-  liquid-raw-content:
+  liquid-raw-tag-body:
     - meta_content_scope: meta.raw.liquid
     - match: ({%)\s*(endraw)\s*(%})
       scope: meta.embedded.liquid source.liquid meta.statement.liquid
@@ -111,7 +111,7 @@ contexts:
 
 ###[ LIQUID SCHEMA TAGS ]#####################################################
 
-  liquid-schemas:
+  liquid-schema-tags:
     - match: ({%-?)\s*(schema)\s*(-?%})
       scope: meta.embedded.liquid source.liquid meta.statement.liquid
       captures:
@@ -129,7 +129,7 @@ contexts:
 
 ###[ LIQUID STYLE TAGS ]#######################################################
 
-  liquid-style:
+  liquid-style-tags:
     # https://shopify.dev/api/liquid/tags/theme-tags#style
     - match: ({%-?)\s*(style)\s*(-?%})
       scope: meta.embedded.liquid source.liquid meta.statement.liquid
@@ -148,40 +148,40 @@ contexts:
 
 ###[ LIQUID STATEMENT TAGS ]##################################################
 
-  liquid-tags:
+  liquid-statement-tags:
     - match: ({%-?)\s*(liquid\b)?
       scope: meta.embedded.liquid source.liquid meta.statement.liquid
       captures:
         1: punctuation.section.embedded.begin.liquid
         2: keyword.declaration.liquid
-      embed: liquid-tag-statements
+      embed: liquid-statement-tag-body
       embed_scope: meta.embedded.liquid source.liquid meta.statement.liquid
       escape: -?%}
       escape_captures:
         0: meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.end.liquid
 
-  liquid-tag-statements:
+  liquid-statement-tag-body:
     - include: jekyll-links
     - include: liquid-line-comments
     - include: liquid-assignments
     - include: liquid-conditionals
     - include: liquid-iterations
-    - include: liquid-templates
+    - include: liquid-functions
     - include: liquid-other
 
-  liquid-tag-expression:
+  liquid-expression:
     - include: liquid-operators
     - include: liquid-parens
-    - include: liquid-object-content
+    - include: liquid-object-body
     - include: eol-pop
 
 ###[ LIQUID OBJECTS ]#########################################################
 
   liquid-object-interpolations:
     - match: (?={{)
-      push: liquid-object-interpolation-content
+      push: liquid-object-interpolation-body
 
-  liquid-object-interpolation-content:
+  liquid-object-interpolation-body:
     - clear_scopes: 1
     - meta_include_prototype: false
     - include: liquid-objects
@@ -190,13 +190,13 @@ contexts:
   liquid-objects:
     - match: '{{'
       scope: meta.interpolation.liquid punctuation.section.interpolation.begin.liquid
-      embed: liquid-object-content
+      embed: liquid-object-body
       embed_scope: meta.interpolation.liquid source.liquid
       escape: '}}'
       escape_captures:
         0: meta.interpolation.liquid punctuation.section.interpolation.end.liquid
 
-  liquid-object-content:
+  liquid-object-body:
     - include: jekyll-variables
     - include: liquid-line-comments
     - include: liquid-constants
@@ -213,10 +213,10 @@ contexts:
     # https://shopify.github.io/liquid/tags/variable
     - match: \b(?:assign|capture|endcapture)\b
       scope: keyword.control.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
     - match: \b(?:decrement|increment)\b
       scope: support.function.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
 
 ###[ LIQUID COMMENTS ]########################################################
 
@@ -236,22 +236,22 @@ contexts:
     # https://shopify.github.io/liquid/tags/control-flow
     - match: \bif\b
       scope: keyword.control.conditional.if.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
     - match: \belse\b
       scope: keyword.control.conditional.else.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
     - match: \belsif\b
       scope: keyword.control.conditional.elseif.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
     - match: \bcase\b
       scope: keyword.control.conditional.case.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
     - match: \bunless\b
       scope: keyword.control.conditional.unless.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
     - match: \bwhen\b
       scope: keyword.control.conditional.when.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
     - match: \b(?:endif|endcase|endunless)\b
       scope: keyword.control.conditional.end.liquid
 
@@ -262,7 +262,7 @@ contexts:
     - match: \bcycle\b
       scope: support.function.cycle.liquid
       push:
-        - liquid-tag-expression
+        - liquid-expression
         - liquid-cycle-group-name
     - match: \bfor\b
       scope: keyword.control.loop.for.liquid
@@ -303,18 +303,18 @@ contexts:
   liquid-iteration-common:
     - match: \bin\b
       scope: keyword.operator.logical.liquid
-    - include: liquid-tag-expression
+    - include: liquid-expression
 
-###[ LIQUID TEMPLATES ]#######################################################
+###[ LIQUID FUNCTIONS ]#######################################################
 
-  liquid-templates:
+  liquid-functions:
     # https://shopify.github.io/liquid/tags/template
     - match: \becho\b
       scope: support.function.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
     - match: \binclude\b # deprecated
       scope: keyword.control.import.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
     - match: \brender\b
       scope: support.function.liquid
       push: liquid-render-arguments
@@ -322,19 +322,19 @@ contexts:
     # https://shopify.dev/api/liquid/tags/theme-tags#form
     - match: \b(?:form|endform)\b
       scope: keyword.declaration.form.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
     # https://shopify.dev/api/liquid/tags/theme-tags#layout
     - match: \blayout\b
       scope: keyword.declaration.layout.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
     # https://shopify.dev/api/liquid/tags/theme-tags#paginate
     - match: \b(?:paginate|endpaginate)\b
       scope: keyword.control.paginate.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
     # https://shopify.dev/api/liquid/tags/theme-tags#section
     - match: \bsection\b
       scope: keyword.declaration.section.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
 
   liquid-render-arguments:
     - match: \bas\b
@@ -347,14 +347,14 @@ contexts:
       captures:
         1: variable.parameter.liquid
         2: punctuation.separator.key-value.liquid
-    - include: liquid-object-content
+    - include: liquid-object-body
     - include: eol-pop
 
   liquid-other:
     # unknown tags added by plugins
     - match: '{{liquid_variables}}'
       scope: keyword.other.liquid
-      push: liquid-tag-expression
+      push: liquid-expression
 
 ###[ LIQUID BRACKETS ]########################################################
 
@@ -378,7 +378,7 @@ contexts:
       pop: 1
     - match: (?=\.\.)
       fail: liquid-parens
-    - include: liquid-object-content
+    - include: liquid-object-body
 
   liquid-range:
     - meta_include_prototype: false
@@ -393,7 +393,7 @@ contexts:
       pop: 1
     - match: \.\.
       scope: punctuation.separator.range.liquid
-    - include: liquid-object-content
+    - include: liquid-object-body
 
   liquid-item-access:
     - match: \[
@@ -405,7 +405,7 @@ contexts:
     - match: \]
       scope: punctuation.section.brackets.end.liquid
       pop: 1
-    - include: liquid-object-content
+    - include: liquid-object-body
 
 ###[ LIQUID OPERATORS ]#######################################################
 
@@ -463,12 +463,12 @@ contexts:
   liquid-strings:
     - match: \"
       scope: punctuation.definition.string.begin.liquid
-      push: liquid-double-quoted-string-content
+      push: liquid-double-quoted-string-body
     - match: \'
       scope: punctuation.definition.string.begin.liquid
-      push: liquid-single-quoted-string-content
+      push: liquid-single-quoted-string-body
 
-  liquid-double-quoted-string-content:
+  liquid-double-quoted-string-body:
     - meta_scope: meta.string.liquid string.quoted.double.liquid
     - match: \"
       scope: punctuation.definition.string.end.liquid
@@ -477,7 +477,7 @@ contexts:
       scope: invalid.illegal.newline.liquid
       pop: 1
 
-  liquid-single-quoted-string-content:
+  liquid-single-quoted-string-body:
     - meta_scope: meta.string.liquid string.quoted.single.liquid
     - match: \'
       scope: punctuation.definition.string.end.liquid
@@ -509,16 +509,16 @@ contexts:
       scope:
         meta.string.liquid string.quoted.double.liquid
         punctuation.definition.string.begin.liquid
-      set: jekyll-url-double-quoted-content
+      set: jekyll-url-double-quoted-body
     - match: \'
       scope:
         meta.string.liquid string.quoted.single.liquid
         punctuation.definition.string.begin.liquid
-      set: jekyll-url-single-quoted-content
+      set: jekyll-url-single-quoted-body
     - match: (?=\S)
-      set: jekyll-url-unquoted-content
+      set: jekyll-url-unquoted-body
 
-  jekyll-url-double-quoted-content:
+  jekyll-url-double-quoted-body:
     - meta_include_prototype: false
     - meta_content_scope: meta.path.url.liquid meta.string.liquid string.quoted.double.liquid
     - match: \"
@@ -531,7 +531,7 @@ contexts:
       pop: 1
     - include: jekyll-url-content
 
-  jekyll-url-single-quoted-content:
+  jekyll-url-single-quoted-body:
     - meta_include_prototype: false
     - meta_content_scope: meta.path.url.liquid meta.string.liquid string.quoted.single.liquid
     - match: \'
@@ -544,7 +544,7 @@ contexts:
       pop: 1
     - include: jekyll-url-content
 
-  jekyll-url-unquoted-content:
+  jekyll-url-unquoted-body:
     - meta_include_prototype: false
     - meta_content_scope: meta.path.url.liquid meta.string.liquid string.unquoted.liquid
     - match: (?=\s)
@@ -562,15 +562,15 @@ contexts:
 
 ###[ JEKYLL HIGHLIGHT TAGS ]##################################################
 
-  jekyll-highlights:
+  jekyll-highlight-tags:
     - match: '{{jekyll_highlight_begin}}'
       scope: meta.embedded.liquid source.liquid meta.statement.liquid
       captures:
         1: punctuation.section.embedded.begin.liquid
         2: keyword.declaration.highlight.liquid.jekyll
-      push: jekyll-highlight-content
+      push: jekyll-highlight-tag-body
 
-  jekyll-highlight-content:
+  jekyll-highlight-tag-body:
     - include: jekyll-highlight-syntaxes
     - include: jekyll-highlight-raw
     - include: immediately-pop
@@ -657,9 +657,9 @@ contexts:
         2: constant.other.language-name.liquid.jekyll
         3: constant.other.liquid.jekyll
         4: punctuation.section.embedded.end.liquid
-      set: jekyll-highlight-raw-content
+      set: jekyll-highlight-raw-body
 
-  jekyll-highlight-raw-content:
+  jekyll-highlight-raw-body:
     - meta_content_scope: markup.raw.code-fence.liquid.jekyll
     - match: '{{jekyll_highlight_escape}}'
       captures:
