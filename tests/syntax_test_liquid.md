@@ -651,7 +651,7 @@ div {
 |          ^^ keyword.control.conditional.if.liquid
 |             ^^^^ constant.language.boolean.liquid
 |                  ^^ punctuation.section.embedded.end.liquid
-        font-{{family}}: "{{font}}";
+;       font-{{family}}: "{{font}}";
 |            ^^^^^^^^^^ source.css.embedded.html meta.property-list.css meta.block.css meta.interpolation.liquid
 |            ^^ punctuation.section.interpolation.begin.liquid
 |              ^^^^^^ variable.other.liquid
