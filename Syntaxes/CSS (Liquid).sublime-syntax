@@ -11,6 +11,9 @@ file_extensions:
   - css.liquid
   - liquid.css
 
+variables:
+  ident_start: (?:{{nmstart}}|{{)
+
 contexts:
 
   prototype:
@@ -20,3 +23,18 @@ contexts:
   string-content:
     - meta_prepend: true
     - include: scope:source.liquid#interpolations
+
+  at-supports-group-body:
+    - meta_prepend: true
+    - meta_include_prototype: false
+    - include: scope:source.liquid#liquid-tags
+
+  property-lists:
+    - match: \{(?!{)
+      scope: punctuation.section.block.begin.css
+      push: property-list-body
+
+  property-list-body:
+    - meta_prepend: true
+    - meta_include_prototype: false
+    - include: scope:source.liquid#liquid-tags
