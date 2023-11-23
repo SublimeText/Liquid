@@ -29,8 +29,8 @@ jobs:
         include:
           - build: 4134
             default_packages: v4134
-          - build: latest
-            default_packages: master
+          - build: 4148
+            default_packages: v4148
     steps:
       - name: Checkout Default Packages
         uses: actions/checkout@v3
