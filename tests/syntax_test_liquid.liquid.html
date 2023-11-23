@@ -716,3 +716,39 @@ div {
     }
 |   ^ source.js.embedded.html meta.function.js meta.block.js punctuation.section.block.end.js
 </script>
+
+
+<!--
+ --- Test JSON
+ -->
+
+<script type="application/ld+json">
+  {
+      {{ key }}: {{ value }},
+  |  ^ meta.mapping.json - meta.interpolation
+  |   ^^^^^^^^^ meta.mapping.json meta.interpolation.liquid
+  |            ^^ meta.mapping.json - meta.interpolation
+  |              ^^^^^^^^^^^ meta.mapping.json meta.interpolation.liquid
+  |                         ^ meta.mapping.json - meta.interpolation
+  |   ^^ punctuation.section.interpolation.begin.liquid
+  |     ^^^^^ source.liquid
+  |          ^^ punctuation.section.interpolation.end.liquid
+  |            ^ punctuation.separator.key-value.json
+  |              ^^ punctuation.section.interpolation.begin.liquid
+  |                ^^^^^^^ source.liquid
+  |                       ^^ punctuation.section.interpolation.end.liquid
+
+      "key": "String {{val}}!",
+  |          ^^^^^^^^ string.quoted.double.json
+  |                  ^^^^^^^ meta.interpolation.liquid
+  |                         ^^ string.quoted.double.json
+
+      "key": [ {{item1}}, {{item2}} ],
+  |          ^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.sequence.json
+  |          ^ punctuation.section.sequence.begin.json
+  |            ^^^^^^^^^ meta.interpolation.liquid
+  |                     ^ punctuation.separator.sequence.json
+  |                       ^^^^^^^^^ meta.interpolation.liquid
+  |                                 ^ punctuation.section.sequence.end.json
+  }
+</script>
