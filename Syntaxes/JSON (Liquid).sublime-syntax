@@ -1,0 +1,22 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: JSON (Liquid)
+scope: source.json.liquid
+version: 2
+
+extends: Packages/JSON/JSON.sublime-syntax
+
+file_extensions:
+  - json.liquid
+  - liquid.json
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: scope:source.liquid
+
+  inside-string:
+    - meta_prepend: true
+    - include: scope:source.liquid#interpolations
