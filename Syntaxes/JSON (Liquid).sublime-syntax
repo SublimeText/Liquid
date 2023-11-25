@@ -5,7 +5,7 @@ name: JSON (Liquid)
 scope: source.json.liquid
 version: 2
 
-extends: Packages/JSON/JSON.sublime-syntax
+extends: JSON.sublime-syntax
 
 file_extensions:
   - json.liquid
@@ -17,6 +17,6 @@ contexts:
     - meta_prepend: true
     - include: scope:source.liquid
 
-  inside-string:
+  string-prototype:
     - meta_prepend: true
     - include: scope:source.liquid#interpolations
