@@ -728,7 +728,7 @@ div {
   |  ^ meta.mapping.json - meta.interpolation
   |   ^^^^^^^^^ meta.mapping.json meta.interpolation.liquid
   |            ^^ meta.mapping.json - meta.interpolation
-  |              ^^^^^^^^^^^ meta.mapping.json meta.interpolation.liquid
+  |              ^^^^^^^^^^^ meta.mapping.value.json meta.interpolation.liquid
   |                         ^ meta.mapping.json - meta.interpolation
   |   ^^ punctuation.section.interpolation.begin.liquid
   |     ^^^^^ source.liquid
@@ -737,18 +737,49 @@ div {
   |              ^^ punctuation.section.interpolation.begin.liquid
   |                ^^^^^^^ source.liquid
   |                       ^^ punctuation.section.interpolation.end.liquid
+  |                         ^ punctuation.separator.sequence.json
+
+      {%- if foo.bar -%}
+  |  ^ meta.mapping.json - meta.embedded - invalid
+  |   ^^^^^^^^^^^^^^^^^^ meta.mapping.json meta.embedded.liquid source.liquid meta.statement.liquid
+  |   ^^^ punctuation.section.embedded.begin.liquid
+  |                  ^^^ punctuation.section.embedded.end.liquid
+  |                     ^ meta.mapping.json - meta.embedded - invalid
 
       "key": "String {{val}}!",
-  |          ^^^^^^^^ string.quoted.double.json
-  |                  ^^^^^^^ meta.interpolation.liquid
-  |                         ^^ string.quoted.double.json
+  |  ^ meta.mapping.json - meta.mapping.key - invalid
+  |   ^^^^^ meta.mapping.key.json string.quoted.double.json
+  |        ^^ meta.mapping.json
+  |          ^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.string.json
+  |          ^^^^^^^^ string.quoted.double.json - meta.interpolation
+  |                  ^^^^^^^ meta.interpolation.liquid - string
+  |                         ^^ string.quoted.double.json - meta.interpolation
+  |                           ^ punctuation.separator.sequence.json
+      {% else %}
+  |  ^ meta.mapping.json - meta.embedded - invalid
+  |   ^^^^^^^^^^ meta.mapping.json meta.embedded.liquid source.liquid meta.statement.liquid
+  |   ^^ punctuation.section.embedded.begin.liquid
+  |           ^^ punctuation.section.embedded.end.liquid
+  |             ^ meta.mapping.json - meta.embedded - invalid
 
       "key": [ {{item1}}, {{item2}} ],
+  |  ^ meta.mapping.json - meta.mapping.key - invalid
+  |   ^^^^^ meta.mapping.key.json string.quoted.double.json
+  |        ^^ meta.mapping.json
   |          ^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.sequence.json
   |          ^ punctuation.section.sequence.begin.json
   |            ^^^^^^^^^ meta.interpolation.liquid
   |                     ^ punctuation.separator.sequence.json
   |                       ^^^^^^^^^ meta.interpolation.liquid
   |                                 ^ punctuation.section.sequence.end.json
+  |                                  ^ punctuation.separator.sequence.json
+  |                                   ^ - invalid
+
+      {% endif %}
+  |  ^ meta.mapping.json - meta.embedded - invalid
+  |   ^^^^^^^^^^^ meta.mapping.json meta.embedded.liquid source.liquid meta.statement.liquid
+  |   ^^ punctuation.section.embedded.begin.liquid
+  |            ^^ punctuation.section.embedded.end.liquid
+  |              ^ meta.mapping.json - meta.embedded - invalid
   }
 </script>
