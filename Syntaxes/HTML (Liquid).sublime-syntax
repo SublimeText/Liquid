@@ -22,17 +22,17 @@ contexts:
 
   frontmatter:
     - meta_include_prototype: false
-    - match: (---)\s*(?i:(ya?ml)\s*)?\n
+    - match: \s*(---)\s*\n
       captures:
         0: meta.frontmatter.jekyll
-        1: punctuation.section.block.begin.frontmatter.jekyll
+        1: punctuation.section.frontmatter.begin.jekyll
         2: constant.other.language-name.jekyll
       embed: scope:source.yaml
       embed_scope: meta.frontmatter.jekyll source.yaml.embedded.jekyll
-      escape: ^(---|\.{3})\s*\n  # pandoc requires the remainder of the line to be blank
+      escape: ^\s*(---)\s*$\n?
       escape_captures:
         0: meta.frontmatter.jekyll
-        1: punctuation.section.block.end.frontmatter.jekyll
+        1: punctuation.section.frontmatter.end.jekyll
       pop: 1
     # Ensure to highlight frontmatter if the syntax is embedded, but pop as early as possible
     - match: ^|(?=\S)
