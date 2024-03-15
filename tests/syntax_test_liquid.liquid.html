@@ -32,6 +32,17 @@
 | ^ punctuation.definition.comment.liquid
 %}
 
+
+{% liquid
+
+  comment
+| ^^^^^^^ meta.statement.liquid keyword.declaration.comment.liquid - comment
+  commented text
+| ^^^^^^^^^^^^^^^ comment.block.liquid
+  endcomment
+| ^^^^^^^^^^ meta.statement.liquid keyword.declaration.comment.liquid - comment
+%}
+
 {% if true %}
 | <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
 |^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
