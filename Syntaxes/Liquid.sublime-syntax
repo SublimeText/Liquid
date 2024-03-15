@@ -162,6 +162,7 @@ contexts:
 
   liquid-statement-tag-body:
     - include: jekyll-links
+    - include: liquid-block-comments
     - include: liquid-line-comments
     - include: liquid-assignments
     - include: liquid-conditionals
@@ -219,6 +220,17 @@ contexts:
       push: liquid-expression
 
 ###[ LIQUID COMMENTS ]########################################################
+
+  liquid-block-comments:
+    - match: \bcomment\b
+      scope: keyword.declaration.comment.liquid
+      push: liquid-block-comment-body
+
+  liquid-block-comment-body:
+    - meta_content_scope: comment.block.liquid
+    - match: \bendcomment\b
+      scope: keyword.declaration.comment.liquid
+      pop: 1
 
   liquid-line-comments:
     - match: \#+
