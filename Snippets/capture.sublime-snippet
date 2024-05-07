@@ -5,6 +5,6 @@ ${TM_TEMPLATE_START}capture ${1:name}${TM_TEMPLATE_END}
 ${TM_TEMPLATE_START}endcapture${TM_TEMPLATE_END}
 ]]></content>
 <tabTrigger>capture</tabTrigger>
-<description>liquid capture</description>
 <scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
+<description>liquid capture</description>
 </snippet>

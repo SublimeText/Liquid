@@ -7,6 +7,6 @@ ${TM_TEMPLATE_START}else${TM_TEMPLATE_END}
 ${TM_TEMPLATE_START}endif${TM_TEMPLATE_END}
 ]]></content>
 <tabTrigger>ifelse</tabTrigger>
-<description>liquid if else</description>
 <scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
+<description>liquid if else</description>
 </snippet>
