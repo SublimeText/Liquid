@@ -5,6 +5,6 @@ ${TM_TEMPLATE_START}if ${1:condition}${TM_TEMPLATE_END}
 ${TM_TEMPLATE_START}endif${TM_TEMPLATE_END}
 ]]></content>
 <tabTrigger>if</tabTrigger>
-<description>liquid if</description>
 <scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
+<description>liquid if</description>
 </snippet>

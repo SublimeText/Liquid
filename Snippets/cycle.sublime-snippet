@@ -3,6 +3,6 @@
 ${TM_TEMPLATE_START}cycle '${1:first value}', '${2:second value}'${TM_TEMPLATE_END}
 ]]></content>
 <tabTrigger>cycle</tabTrigger>
-<description>liquid cycle</description>
 <scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
+<description>liquid cycle</description>
 </snippet>
