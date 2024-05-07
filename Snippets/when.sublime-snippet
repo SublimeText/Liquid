@@ -4,6 +4,6 @@ ${TM_TEMPLATE_START}when '${1:matching?}'${TM_TEMPLATE_END}
 	$0
 ]]></content>
 <tabTrigger>when</tabTrigger>
-<description>liquid when</description>
 <scope>(text.html.liquid | text.html.markdown.liquid | source.css.liquid | source.js.liquid) - meta.interpolation.liquid</scope>
+<description>liquid when</description>
 </snippet>
