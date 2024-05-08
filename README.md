@@ -38,9 +38,19 @@ To always open your templates with this syntax, use the `Open all with current e
 
 Liquid extends Sublime Text's HTML, Markdown, CSS and JavaScript, syntax definitions.
 
-If Liquid syntax highlighting doesn't work and console displays syntax errors in e.g.: _HTML (Liquid).sublime-syntax_ or _Markdown (Liquid).sublime-syntax_, please make sure to remove any out-dated syntax override.
+If Liquid syntax highlighting doesn't work and console displays syntax errors, 
 
-Steps:
+1. check if required bundled packages are enabled.
+2. remove any out-dated syntax override.
+   
+### Enable bundled packages
+
+1. Open `Command Palette` using <kbd>ctrl+shift+P</kbd> or menu item `Tools → Command Palette...`
+2. Choose `Package Control: Enable Packages`
+3. Find `CSS` and hit <kbd>Enter</kbd>
+4. Repeat the steps for `JavaScript`, `HTML` and `Markdown`
+
+### Remove overrides
 
 1. call _Menu > Preferences > Browse Packages.._
 2. Look for _CSS_, _HTML_, _JavaScript_, _Markdown_ folder
