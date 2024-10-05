@@ -17,6 +17,7 @@ contexts:
 
   main:
     - meta_include_prototype: false
+    - meta_scope: meta.template.liquid
     - match: ''
       set: [html, frontmatter]
 
@@ -105,9 +106,7 @@ contexts:
         meta.string.html string.quoted.double.html
         punctuation.definition.string.begin.html
       embed: scope:source.js.liquid
-      embed_scope:
-        meta.string.html meta.interpolation.html
-        source.js.embedded.html
+      embed_scope: meta.string.html source.js.embedded.html
       escape: \"
       escape_captures:
         0: meta.string.html string.quoted.double.html
@@ -117,9 +116,7 @@ contexts:
         meta.string.html string.quoted.single.html
         punctuation.definition.string.begin.html
       embed: scope:source.js.liquid
-      embed_scope:
-        meta.string.html meta.interpolation.html
-        source.js.embedded.html
+      embed_scope: meta.string.html source.js.embedded.html
       escape: \'
       escape_captures:
         0: meta.string.html string.quoted.single.html
@@ -132,9 +129,7 @@ contexts:
         meta.string.html string.quoted.double.html
         punctuation.definition.string.begin.html
       embed: scope:source.css.liquid#rule-list-body
-      embed_scope:
-        meta.string.html meta.interpolation.html
-        source.css.embedded.html
+      embed_scope: meta.string.html source.css.embedded.html
       escape: \"
       escape_captures:
         0: meta.string.html string.quoted.double.html
@@ -144,9 +139,7 @@ contexts:
         meta.string.html string.quoted.single.html
         punctuation.definition.string.begin.html
       embed: scope:source.css.liquid#rule-list-body
-      embed_scope:
-        meta.string.html meta.interpolation.html
-        source.css.embedded.html
+      embed_scope: meta.string.html source.css.embedded.html
       escape: \'
       escape_captures:
         0: meta.string.html string.quoted.single.html
