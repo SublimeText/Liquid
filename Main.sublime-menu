@@ -1,0 +1,28 @@
+[
+	{
+		"id": "preferences",
+		"children": [
+			{
+				"caption": "Package Settings",
+				"mnemonic": "P",
+				"id": "package-settings",
+				"children": [
+					{
+						"caption": "Liquid",
+						"children": [
+							{
+								"caption": "Key Bindings",
+								"command": "edit_settings",
+								"args": {
+									"base_file": "${packages}/Liquid/Default.sublime-keymap",
+									"user_file": "${packages}/User/Default ($platform).sublime-keymap",
+									"default": "[\n\t${0}\n]\n"
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]
