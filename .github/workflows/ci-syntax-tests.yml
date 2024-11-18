@@ -46,11 +46,11 @@ jobs:
           path: st_syntax_tests/Data/Packages
 
       - name: Delete default package tests
-        run: |-
+        run: |
           find st_syntax_tests/Data/Packages/*/ -type f -name 'syntax_test*' -exec rm -v '{}' \;
 
       - name: Prepare dummy syntaxes
-        run: |-
+        run: |
           packages=st_syntax_tests/Data/Packages
           scopes=(
               source.ada
@@ -103,7 +103,7 @@ jobs:
           path: st_syntax_tests/Data/Packages/Liquid
 
       - name: Run Syntax Tests for Sublime Text ${{ matrix.build }}
-        run: |-
+        run: |
           if [[ "${{ matrix.build }}" == "latest" ]]; then
             wget -O st_syntax_tests.tar.xz https://download.sublimetext.com/latest/dev/linux/x64/syntax_tests
           else
