@@ -88,6 +88,23 @@ A Paragraph {{var}}
 |                           ^^^^^^^ meta.string.liquid string.quoted.double.liquid
 |                                   ^^ punctuation.section.embedded.end.liquid
 
+{%- if foo != blank
+  and bar != ''
+|^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+| ^^^ keyword.operator.logical.liquid
+|     ^^^ variable.other.liquid
+|         ^^ keyword.operator.comparison.liquid
+|            ^^ meta.string.liquid string.quoted.single.liquid
+  or baz
+|^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+| ^^ keyword.operator.logical.liquid
+|    ^^^ variable.other.liquid
+  == true
+|^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+| ^^ keyword.operator.assignment.liquid
+|    ^^^^ constant.language.boolean.liquid
+-%}
+
 {% case handle %}
 |^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
 |  ^^^^ keyword.control.conditional.case.liquid
