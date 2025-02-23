@@ -168,6 +168,8 @@ contexts:
     - include: liquid-conditionals
     - include: liquid-iterations
     - include: liquid-functions
+    - include: liquid-filters
+    - include: liquid-expression-continuation
     - include: liquid-other
 
   liquid-expression:
@@ -452,6 +454,32 @@ contexts:
       scope: keyword.operator.logical.liquid
     - match: \bby\b
       scope: keyword.operator.liquid
+
+  liquid-expression-continuation:
+    # hack to handle multi-line expressions
+    #  If first token of a new line matches one of the following patterns
+    #  it is most likely a continuation of an expression.
+    - match: ':'
+      scope: punctuation.separator.key-value.liquid
+      push: liquid-expression
+    - match: ','
+      scope: punctuation.separator.sequence.liquid
+      push: liquid-expression
+    - match: =
+      scope: keyword.operator.assignment.liquid
+      push: liquid-expression
+    - match: (?:!=|==|<=|>=|<|>)
+      scope: keyword.operator.comparison.liquid
+      push: liquid-expression
+    - match: \bas\b
+      scope: keyword.operator.assignment.liquid
+      push: liquid-expression
+    - match: \b(?:and|or|not|contains)\b
+      scope: keyword.operator.logical.liquid
+      push: liquid-expression
+    - match: \bby\b
+      scope: keyword.operator.liquid
+      push: liquid-expression
 
 ###[ LIQUID LITERALS ]########################################################
 
