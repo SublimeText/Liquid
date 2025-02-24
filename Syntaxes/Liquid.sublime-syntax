@@ -191,11 +191,11 @@ contexts:
     - include: immediately-pop
 
   liquid-objects:
-    - match: '{{'
+    - match: '{{-?'
       scope: meta.interpolation.liquid punctuation.section.interpolation.begin.liquid
       embed: liquid-object-body
       embed_scope: meta.interpolation.liquid source.liquid
-      escape: '}}'
+      escape: '-?}}'
       escape_captures:
         0: meta.interpolation.liquid punctuation.section.interpolation.end.liquid
 
