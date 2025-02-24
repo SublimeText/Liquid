@@ -630,6 +630,18 @@ div {
 |                     ^^^^^ meta.string.liquid string.quoted.double.liquid
 |                           ^^ punctuation.section.interpolation.end.liquid
 
+  {{- foo.bar | where: "foo" -}}
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.liquid
+| ^^^ punctuation.section.interpolation.begin.liquid
+|     ^^^ variable.other.liquid
+|        ^ punctuation.accessor.dot.liquid
+|         ^^^ variable.other.member.liquid
+|             ^ keyword.operator.logical.pipe.liquid
+|               ^^^^^ support.function.filter.liquid
+|                    ^ punctuation.separator.key-value.liquid
+|                      ^^^^^ meta.string.liquid string.quoted.double.liquid
+|                            ^^^ punctuation.section.interpolation.end.liquid
+
   {{ 10 -10 +10 }}
 | ^^^^^^^^^^^^^^^^ meta.interpolation.liquid
 |    ^^ meta.number.integer.decimal.liquid constant.numeric.value.liquid
