@@ -9,7 +9,7 @@ version: 2
 hidden: true
 
 variables:
-  liquid_variables: \b[a-z_][0-9a-z_]*\b
+  liquid_variables: \b[a-zA-Z_][0-9a-zA-Z_]*\b
 
   jekyll_highlight_begin: (?:({%)\s*(highlight)\s+)
   jekyll_highlight_params: (?:(?:\s+(\S.*?))?\s*(%}))
@@ -430,7 +430,7 @@ contexts:
 
   liquid-filter-name:
     - meta_scope: meta.filter.liquid
-    - match: \b[a-z_-]+\b
+    - match: \b[a-zA-Z_-]+\b
       scope: support.function.filter.liquid
       pop: 1
     - include: else-pop
