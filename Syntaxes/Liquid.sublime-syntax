@@ -418,7 +418,7 @@ contexts:
 
   liquid-filter-name:
     - meta_scope: meta.filter.liquid
-    - match: \b[a-z_-]+\b
+    - match: \b[a-zA-Z_-]+\b
       scope: support.function.filter.liquid
       pop: 1
     - include: else-pop
