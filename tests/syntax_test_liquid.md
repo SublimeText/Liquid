@@ -10,7 +10,7 @@
 |^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
 |^ punctuation.section.embedded.begin.liquid
 |  ^^ keyword.control.conditional.if.liquid
-|     ^^^^ constant.language.boolean.liquid
+|     ^^^^ constant.language.boolean.true.liquid
 |          ^^ punctuation.section.embedded.end.liquid
 
 A Paragraph {{var}}
@@ -563,6 +563,13 @@ div {
  --- Test Objects
  -->
 
+  {{ false true }}
+| ^^^^^^^^^^^^^^^^ meta.interpolation.liquid
+| ^^ punctuation.section.interpolation.begin.liquid
+|    ^^^^^ constant.language.boolean.false.liquid
+|          ^^^^ constant.language.boolean.true.liquid
+|               ^^ punctuation.section.interpolation.end.liquid
+
   {{ blank empty nil null }}
 | ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.liquid
 | ^^ punctuation.section.interpolation.begin.liquid
@@ -658,7 +665,7 @@ div {
 |       ^^^^^^^^^^^^^ source.css.embedded.html meta.property-list.css meta.block.css meta.embedded.liquid source.liquid meta.statement.liquid
 |       ^^ punctuation.section.embedded.begin.liquid
 |          ^^ keyword.control.conditional.if.liquid
-|             ^^^^ constant.language.boolean.liquid
+|             ^^^^ constant.language.boolean.true.liquid
 |                  ^^ punctuation.section.embedded.end.liquid
 ;       font-{{family}}: "{{font}}";
 |            ^^^^^^^^^^ source.css.embedded.html meta.property-list.css meta.block.css meta.interpolation.liquid
