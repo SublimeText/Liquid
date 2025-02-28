@@ -20,14 +20,29 @@ contexts:
     - meta_prepend: true
     - include: scope:source.liquid
 
-  string-content:
+  stylesheet:
     - meta_prepend: true
-    - include: scope:source.liquid#interpolations
+    - include: scope:source.liquid#liquid-tags
+
+  at-keyframe-block-body:
+    - meta_prepend: true
+    - meta_include_prototype: false
+    - include: scope:source.liquid#liquid-tags
+
+  at-layer-name-list:
+    - meta_prepend: true
+    - meta_include_prototype: false
+    - include: scope:source.liquid#liquid-tags
 
   at-supports-group-body:
     - meta_prepend: true
     - meta_include_prototype: false
     - include: scope:source.liquid#liquid-tags
+
+  stylesheet-block-body:
+    # required until ST4174 (PR #3831)
+    - meta_prepend: true
+    - meta_include_prototype: false
 
   property-lists:
     - match: \{(?!{)
@@ -38,3 +53,7 @@ contexts:
     - meta_prepend: true
     - meta_include_prototype: false
     - include: scope:source.liquid#liquid-tags
+
+  string-content:
+    - meta_prepend: true
+    - include: scope:source.liquid#interpolations
