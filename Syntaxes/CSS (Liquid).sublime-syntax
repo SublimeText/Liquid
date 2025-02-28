@@ -17,6 +17,10 @@ contexts:
     - meta_prepend: true
     - include: scope:source.liquid
 
+  stylesheet:
+    - meta_prepend: true
+    - include: scope:source.liquid#interpolations
+
   string-content:
     - meta_prepend: true
     - include: scope:source.liquid#interpolations
