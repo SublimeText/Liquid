@@ -27,8 +27,14 @@ jobs:
     strategy:
       matrix:
         include:
-          - build: 4134
-            default_packages: v4134
+          - build: 4149 # first supported
+            default_packages: v4149
+          - build: 4152
+            default_packages: v4152
+          - build: 4169
+            default_packages: v4169
+          - build: 4180
+            default_packages: v4180
           - build: latest
             default_packages: master
     steps:

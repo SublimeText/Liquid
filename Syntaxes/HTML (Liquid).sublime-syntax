@@ -23,17 +23,17 @@ contexts:
 
   frontmatter:
     - meta_include_prototype: false
-    - match: (---)\s*(?i:(ya?ml)\s*)?\n
+    - match: \s*(---)\s*\n
       captures:
         0: meta.frontmatter.jekyll
-        1: punctuation.section.block.begin.frontmatter.jekyll
+        1: punctuation.section.frontmatter.begin.jekyll
         2: constant.other.language-name.jekyll
       embed: scope:source.yaml
       embed_scope: meta.frontmatter.jekyll source.yaml.embedded.jekyll
-      escape: ^(---|\.{3})\s*\n  # pandoc requires the remainder of the line to be blank
+      escape: ^\s*(---)\s*$\n?
       escape_captures:
         0: meta.frontmatter.jekyll
-        1: punctuation.section.block.end.frontmatter.jekyll
+        1: punctuation.section.frontmatter.end.jekyll
       pop: 1
     # Ensure to highlight frontmatter if the syntax is embedded, but pop as early as possible
     - match: ^|(?=\S)
@@ -71,6 +71,33 @@ contexts:
         1: source.js.embedded.html
         2: comment.block.html punctuation.definition.comment.end.html
         3: source.js.embedded.html
+        4: comment.block.html punctuation.definition.comment.end.html
+
+  script-json-content:
+    - meta_include_prototype: false
+    - match: \s*((<!\[)(CDATA)(\[))
+      captures:
+        1: meta.tag.sgml.cdata.html
+        2: punctuation.definition.tag.begin.html
+        3: keyword.declaration.cdata.html
+        4: punctuation.definition.tag.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.json.liquid
+      embed_scope: meta.tag.sgml.cdata.html source.json.embedded.html
+      escape: \]\]>
+      escape_captures:
+        0: meta.tag.sgml.cdata.html punctuation.definition.tag.end.html
+    - match: '{{script_content_begin}}'
+      captures:
+        1: comment.block.html punctuation.definition.comment.begin.html
+      pop: 1  # make sure to match only once
+      embed: scope:source.json.liquid
+      embed_scope: source.json.embedded.html
+      escape: '{{script_content_end}}'
+      escape_captures:
+        1: source.json.embedded.html
+        2: comment.block.html punctuation.definition.comment.end.html
+        3: source.json.embedded.html
         4: comment.block.html punctuation.definition.comment.end.html
 
   style-css-content:

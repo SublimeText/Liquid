@@ -162,6 +162,7 @@ contexts:
 
   liquid-statement-tag-body:
     - include: jekyll-links
+    - include: liquid-block-comments
     - include: liquid-line-comments
     - include: liquid-assignments
     - include: liquid-conditionals
@@ -221,6 +222,17 @@ contexts:
       push: liquid-expression
 
 ###[ LIQUID COMMENTS ]########################################################
+
+  liquid-block-comments:
+    - match: \bcomment\b
+      scope: keyword.declaration.comment.liquid
+      push: liquid-block-comment-body
+
+  liquid-block-comment-body:
+    - meta_content_scope: comment.block.liquid
+    - match: \bendcomment\b
+      scope: keyword.declaration.comment.liquid
+      pop: 1
 
   liquid-line-comments:
     - match: \#+
@@ -472,10 +484,12 @@ contexts:
 ###[ LIQUID LITERALS ]########################################################
 
   liquid-constants:
-    - match: \b(?:blank|empty|nil)\b
+    - match: \b(?:blank|empty|nil|null)\b
       scope: constant.language.null.liquid
-    - match: \b(?:true|false)\b
-      scope: constant.language.boolean.liquid
+    - match: \bfalse\b
+      scope: constant.language.boolean.false.liquid
+    - match: \btrue\b
+      scope: constant.language.boolean.true.liquid
 
   liquid-numbers:
     - match: ([-+])?\d+(\.)\d+\b
