@@ -484,10 +484,12 @@ contexts:
 ###[ LIQUID LITERALS ]########################################################
 
   liquid-constants:
-    - match: \b(?:blank|empty|nil)\b
+    - match: \b(?:blank|empty|nil|null)\b
       scope: constant.language.null.liquid
-    - match: \b(?:true|false)\b
-      scope: constant.language.boolean.liquid
+    - match: \bfalse\b
+      scope: constant.language.boolean.false.liquid
+    - match: \btrue\b
+      scope: constant.language.boolean.true.liquid
 
   liquid-numbers:
     - match: ([-+])?\d+(\.)\d+\b

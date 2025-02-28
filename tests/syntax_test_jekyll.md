@@ -131,7 +131,7 @@ end
 |       ^^^^^^^^^^^^^ source.css.embedded.html meta.property-list.css meta.block.css meta.embedded.liquid source.liquid meta.statement.liquid
 |       ^^ punctuation.section.embedded.begin.liquid
 |          ^^ keyword.control.conditional.if.liquid
-|             ^^^^ constant.language.boolean.liquid
+|             ^^^^ constant.language.boolean.true.liquid
 |                  ^^ punctuation.section.embedded.end.liquid
 ;       font-{{family}}: "{{font}}";
 |            ^^^^^^^^^^ source.css.embedded.html meta.property-list.css meta.block.css meta.interpolation.liquid

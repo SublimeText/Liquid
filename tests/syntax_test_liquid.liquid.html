@@ -48,7 +48,7 @@
 |^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
 |^ punctuation.section.embedded.begin.liquid
 |  ^^ keyword.control.conditional.if.liquid
-|     ^^^^ constant.language.boolean.liquid
+|     ^^^^ constant.language.boolean.true.liquid
 |          ^^ punctuation.section.embedded.end.liquid
 
 A Paragraph {{var}}
@@ -102,7 +102,7 @@ A Paragraph {{var}}
   == true
 |^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
 | ^^ keyword.operator.assignment.liquid
-|    ^^^^ constant.language.boolean.liquid
+|    ^^^^ constant.language.boolean.true.liquid
 -%}
 
 {% case handle %}
@@ -618,6 +618,22 @@ div {
  --- Test Objects
  -->
 
+  {{ false true }}
+| ^^^^^^^^^^^^^^^^ meta.interpolation.liquid
+| ^^ punctuation.section.interpolation.begin.liquid
+|    ^^^^^ constant.language.boolean.false.liquid
+|          ^^^^ constant.language.boolean.true.liquid
+|               ^^ punctuation.section.interpolation.end.liquid
+
+  {{ blank empty nil null }}
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.liquid
+| ^^ punctuation.section.interpolation.begin.liquid
+|    ^^^^^ constant.language.null.liquid
+|          ^^^^^ constant.language.null.liquid
+|                ^^^ constant.language.null.liquid
+|                    ^^^^ constant.language.null.liquid
+|                         ^^ punctuation.section.interpolation.end.liquid
+
   {{ foo.bar | where: "foo" }}
 | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.liquid
 | ^^ punctuation.section.interpolation.begin.liquid
@@ -716,7 +732,7 @@ div {
 |       ^^^^^^^^^^^^^ source.css.embedded.html meta.property-list.css meta.block.css meta.embedded.liquid source.liquid meta.statement.liquid
 |       ^^ punctuation.section.embedded.begin.liquid
 |          ^^ keyword.control.conditional.if.liquid
-|             ^^^^ constant.language.boolean.liquid
+|             ^^^^ constant.language.boolean.true.liquid
 |                  ^^ punctuation.section.embedded.end.liquid
 ;       {{prop}}: {{value}};
 |       ^^^^^^^^ meta.property-name.css support.type.property-name.css meta.interpolation.liquid
