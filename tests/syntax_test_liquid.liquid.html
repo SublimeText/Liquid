@@ -750,6 +750,21 @@ div {
 |              ^^ punctuation.section.embedded.end.liquid
     }
 
+    @layer {
+      {% if true %}
+|     ^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+|     ^^ punctuation.section.embedded.begin.liquid
+|        ^^ keyword.control.conditional.if.liquid
+|           ^^^^ constant.language.boolean.true.liquid
+|                ^^ punctuation.section.embedded.end.liquid
+
+      {% endif %}
+|     ^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+|     ^^ punctuation.section.embedded.begin.liquid
+|        ^^^^^ keyword.control.conditional.end.liquid
+|              ^^ punctuation.section.embedded.end.liquid
+    }
+
     @supports ({% if true %} color: {{color}} {% endif %} ) { {% if %} }
 |              ^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
 |                                   ^^^^^^^^^ meta.interpolation.liquid
