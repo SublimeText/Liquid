@@ -445,30 +445,30 @@ I am {{ age }} and my favorite food is {{ favorite_food }}.
 |  ^^^ keyword.declaration.raw.liquid
 |      ^^ punctuation.section.embedded.end.liquid
   Displays a product title
-| <- text.html.liquid meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
-|^^^^^^^^^^^^^^^^^^^^^^^^^ meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
+| <- source.embedded.liquiddoc comment.liquiddoc
+|^^^^^^^^^^^^^^^^^^^^^^^^^ source.embedded.liquiddoc comment.liquiddoc
 
   @description This will display a product title
-| <- meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
-| ^^^^^^^^^^^^ meta.template.liquid source.embedded.liquiddoc keyword.liquiddoc
-|              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
+| <- source.embedded.liquiddoc comment.liquiddoc
+| ^^^^^^^^^^^^ source.embedded.liquiddoc keyword.liquiddoc
+|              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.embedded.liquiddoc comment.liquiddoc
 
   @param {product} product The product to display the title for
-| <- meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
-| ^^^^^^ meta.template.liquid source.embedded.liquiddoc keyword.liquiddoc
-|        ^^^^^^^^^ meta.template.liquid source.embedded.liquiddoc storage.type.liquiddoc
-|                  ^^^^^^^ meta.template.liquid source.embedded.liquiddoc variable.liquiddoc
-|                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
+| <- source.embedded.liquiddoc comment.liquiddoc
+| ^^^^^^ source.embedded.liquiddoc keyword.liquiddoc
+|        ^^^^^^^^^ source.embedded.liquiddoc storage.type.liquiddoc
+|                  ^^^^^^^ source.embedded.liquiddoc variable.liquiddoc
+|                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.embedded.liquiddoc comment.liquiddoc
 
   @example
-| <- meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
-| ^^^^^^^^ meta.template.liquid source.embedded.liquiddoc keyword.liquiddoc
+| <- source.embedded.liquiddoc comment.liquiddoc
+| ^^^^^^^^ source.embedded.liquiddoc keyword.liquiddoc
   {% render 'product-title', product: product %}
-| <- meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
-| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
+| <- source.embedded.liquiddoc comment.liquiddoc
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.embedded.liquiddoc comment.liquiddoc
 {% enddoc %}
 | <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
-|^ meta.template.liquid meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
+|^ meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
 |  ^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid keyword.declaration.raw.liquid
 |         ^^ meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.end.liquid
 
