@@ -12,7 +12,6 @@ hidden: true
 variables:
   liquid_variables: \b[a-zA-Z_][0-9a-zA-Z_]*\b
 
-
 contexts:
   main:
     - match: '@description'
