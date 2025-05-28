@@ -1,0 +1,31 @@
+%YAML 1.2
+---
+# https://shopify.github.io/liquid
+# https://shopify.dev/api/liquid
+# https://shopify.dev/docs/storefronts/themes/tools/liquid-doc
+# http://www.sublimetext.com/docs/syntax.html
+name: LiquidDoc
+scope: source.liquiddoc
+version: 2
+hidden: true
+
+variables:
+  liquid_variables: \b[a-zA-Z_][0-9a-zA-Z_]*\b
+
+
+contexts:
+  main:
+    - match: '@description'
+      scope: keyword.liquiddoc
+
+    - match: '(@param)\s+({[a-z]+})\s+(\[?{{liquid_variables}}\]?)'
+      captures:
+        1: keyword.liquiddoc
+        2: storage.type.liquiddoc
+        3: variable.liquiddoc
+
+    - match: '@example'
+      scope: keyword.liquiddoc
+
+    - match: '.'
+      scope: comment.liquiddoc

@@ -26,6 +26,7 @@ contexts:
 
   liquid-tags:
     - include: jekyll-highlight-tags
+    - include: liquid-doc-tags
     - include: liquid-comment-tags
     - include: liquid-schema-tags
     - include: liquid-javascript-tags
@@ -66,6 +67,26 @@ contexts:
       captures:
         1: punctuation.section.embedded.begin.liquid
         2: keyword.declaration.comment.liquid
+        3: punctuation.section.embedded.end.liquid
+      pop: 1
+
+###[ LIQUID DOC TAGS ]####################################################
+
+  liquid-doc-tags:
+    # https://shopify.dev/docs/api/liquid/tags/theme-tags#doc
+    - match: ({%-?)\s*(doc)\s*(-?%})
+      scope: meta.embedded.liquid source.liquid meta.statement.liquid
+      captures:
+        1: punctuation.section.embedded.begin.liquid
+        2: keyword.declaration.raw.liquid
+        3: punctuation.section.embedded.end.liquid
+      embed: scope:source.liquiddoc
+      embed_scope: source.embedded.liquiddoc
+      escape: ({%-?)\s*(enddoc)\s*(-?%})
+      escape_captures:
+        0: meta.embedded.liquid source.liquid meta.statement.liquid
+        1: punctuation.section.embedded.begin.liquid
+        2: keyword.declaration.raw.liquid
         3: punctuation.section.embedded.end.liquid
       pop: 1
 
