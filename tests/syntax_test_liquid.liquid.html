@@ -438,6 +438,40 @@ I am {{ age }} and my favorite food is {{ favorite_food }}.
 |  ^^^^^^^^^^ keyword.declaration.comment.liquid
 |             ^^ punctuation.section.embedded.end.liquid
 
+{% doc %}
+| <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
+|^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+|^ punctuation.section.embedded.begin.liquid
+|  ^^^ keyword.declaration.raw.liquid
+|      ^^ punctuation.section.embedded.end.liquid
+  Displays a product title
+| <- text.html.liquid meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
+|^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.liquid meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
+
+  @description This will display a product title
+| <- text.html.liquid meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
+| ^^^^^^^^^^^^ text.html.liquid meta.template.liquid source.embedded.liquiddoc keyword.liquiddoc
+|              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  text.html.liquid meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
+
+  @param {product} product The product to display the title for
+| <- text.html.liquid meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
+| ^^^^^^ text.html.liquid meta.template.liquid source.embedded.liquiddoc keyword.liquiddoc
+|        ^^^^^^^^^ text.html.liquid meta.template.liquid source.embedded.liquiddoc storage.type.liquiddoc
+|                  ^^^^^^^ text.html.liquid meta.template.liquid source.embedded.liquiddoc variable.liquiddoc
+|                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.liquid meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
+
+  @example
+| <- text.html.liquid meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
+| ^^^^^^^^ text.html.liquid meta.template.liquid source.embedded.liquiddoc keyword.liquiddoc
+  {% render 'product-title', product: product %}
+| <- text.html.liquid meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.html.liquid meta.template.liquid source.embedded.liquiddoc comment.liquiddoc
+{% enddoc %}
+| <- text.html.liquid meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
+|^ text.html.liquid meta.template.liquid meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
+|  ^^^^^^ text.html.liquid meta.embedded.liquid source.liquid meta.statement.liquid keyword.declaration.raw.liquid
+|         ^^ text.html.liquid meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.end.liquid
+
 {% javascript %}
 | <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
 |^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
