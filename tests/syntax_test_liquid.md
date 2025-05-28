@@ -558,6 +558,7 @@ div {
 |         ^^^^^ meta.string.liquid string.quoted.double.liquid
 |               ^^ punctuation.section.embedded.end.liquid
 
+
 <!--
  --- Test Objects
  -->
