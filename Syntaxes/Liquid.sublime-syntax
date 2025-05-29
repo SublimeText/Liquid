@@ -34,7 +34,7 @@ contexts:
     - include: liquid-raw-tags
     - include: liquid-statement-tags
 
-###[ LIQUID INTERPOLATIONS ]##################################################
+###[ LIQUID INTERPOLATIONS ]###################################################
 
   interpolations:
     - match: (?={[{%])
@@ -47,7 +47,7 @@ contexts:
     - include: liquid-objects
     - include: immediately-pop
 
-###[ LIQUID COMMENT TAGS ]####################################################
+###[ LIQUID COMMENT TAGS ]#####################################################
 
   liquid-comment-tags:
     # https://shopify.github.io/liquid/tags/template
@@ -110,7 +110,7 @@ contexts:
         3: punctuation.section.embedded.end.liquid
       pop: 1
 
-###[ LIQUID SCHEMA TAGS ]#####################################################
+###[ LIQUID SCHEMA TAGS ]######################################################
 
   liquid-schema-tags:
     - match: ({%-?)\s*(schema)\s*(-?%})
@@ -128,7 +128,7 @@ contexts:
         2: keyword.declaration.schema.liquid
         3: punctuation.section.embedded.end.liquid
 
-###[ LIQUID STYLE TAGS ]######################################################
+###[ LIQUID STYLE TAGS ]#######################################################
 
   liquid-style-tags:
     # https://shopify.dev/api/liquid/tags/theme-tags#style
@@ -147,7 +147,7 @@ contexts:
         2: keyword.declaration.raw.liquid
         3: punctuation.section.embedded.end.liquid
 
-###[ LIQUID STYLESHEET TAGS ]#################################################
+###[ LIQUID STYLESHEET TAGS ]##################################################
 
   liquid-stylesheet-tags:
     # https://shopify.dev/docs/api/liquid/tags/theme-tags#stylesheet
@@ -166,7 +166,7 @@ contexts:
         2: keyword.declaration.raw.liquid
         3: punctuation.section.embedded.end.liquid
 
-###[ LIQUID STATEMENT TAGS ]##################################################
+###[ LIQUID STATEMENT TAGS ]###################################################
 
   liquid-statement-tags:
     - match: ({%-?)\s*(liquid\b)?
@@ -197,7 +197,7 @@ contexts:
     - include: liquid-object-body
     - include: eol-pop
 
-###[ LIQUID OBJECTS ]#########################################################
+###[ LIQUID OBJECTS ]##########################################################
 
   liquid-object-interpolations:
     - match: (?={{)
@@ -229,7 +229,7 @@ contexts:
     - include: liquid-strings
     - include: liquid-variables
 
-###[ LIQUID ASSIGNMENTS ]#####################################################
+###[ LIQUID ASSIGNMENTS ]######################################################
 
   liquid-assignments:
     # https://shopify.github.io/liquid/tags/variable
@@ -240,7 +240,7 @@ contexts:
       scope: support.function.liquid
       push: liquid-expression
 
-###[ LIQUID COMMENTS ]########################################################
+###[ LIQUID COMMENTS ]#########################################################
 
   liquid-line-comments:
     - match: \#+
@@ -252,7 +252,7 @@ contexts:
     - match: \n
       pop: 1
 
-###[ LIQUID CONTITIONALS ]####################################################
+###[ LIQUID CONTITIONALS ]#####################################################
 
   liquid-conditionals:
     # https://shopify.github.io/liquid/tags/control-flow
@@ -277,7 +277,7 @@ contexts:
     - match: \b(?:endif|endcase|endunless)\b
       scope: keyword.control.conditional.end.liquid
 
-###[ LIQUID ITERATIONS ]######################################################
+###[ LIQUID ITERATIONS ]#######################################################
 
   liquid-iterations:
     # https://shopify.github.io/liquid/tags/iteration
@@ -327,7 +327,7 @@ contexts:
       scope: keyword.control.loop.in.liquid
     - include: liquid-expression
 
-###[ LIQUID FUNCTIONS ]#######################################################
+###[ LIQUID FUNCTIONS ]########################################################
 
   liquid-functions:
     # https://shopify.github.io/liquid/tags/template
@@ -378,7 +378,7 @@ contexts:
       scope: keyword.other.liquid
       push: liquid-expression
 
-###[ LIQUID BRACKETS ]########################################################
+###[ LIQUID BRACKETS ]#########################################################
 
   liquid-parens:
     - match: (?=\()
@@ -429,7 +429,7 @@ contexts:
       pop: 1
     - include: liquid-object-body
 
-###[ LIQUID OPERATORS ]#######################################################
+###[ LIQUID OPERATORS ]########################################################
 
   liquid-filters:
     - match: \|
@@ -489,7 +489,7 @@ contexts:
       scope: keyword.operator.liquid
       push: liquid-expression
 
-###[ LIQUID LITERALS ]########################################################
+###[ LIQUID LITERALS ]#########################################################
 
   liquid-constants:
     - match: \b(?:blank|empty|nil|null)\b
@@ -546,7 +546,7 @@ contexts:
       pop: 1
     - include: else-pop
 
-###[ JEKYLL LINK TAGS ]#######################################################
+###[ JEKYLL LINK TAGS ]########################################################
 
   jekyll-links:
     - match: \b(?i:link|post_url)\b
@@ -610,7 +610,7 @@ contexts:
       scope: punctuation.separator.path.liquid
     - include: liquid-object-interpolations
 
-###[ JEKYLL HIGHLIGHT TAGS ]##################################################
+###[ JEKYLL HIGHLIGHT TAGS ]###################################################
 
   jekyll-highlight-tags:
     - match: '{{jekyll_highlight_begin}}'
@@ -1943,14 +1943,14 @@ contexts:
         4: punctuation.section.embedded.end.liquid
       pop: 1
 
-###[ JEKYLL OBJECT EXTENSIONS ]###############################################
+###[ JEKYLL OBJECT EXTENSIONS ]################################################
 
   jekyll-variables:
     # https://jekyllrb.com/docs/variables/
     - match: \b(?:site|page|layout|content|paginator)\b
       scope: variable.language.globals.jekyll
 
-###[ PROTOTYPES ]#############################################################
+###[ PROTOTYPES ]##############################################################
 
   eol-pop:
     - match: $
