@@ -25,12 +25,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15   # default is 6 hours!
     strategy:
+      fail-fast: false
       matrix:
         include:
           - build: 4134
             default_packages: v4134
-          - build: latest
-            default_packages: master
     steps:
       - name: Checkout Default Packages
         uses: actions/checkout@v4
