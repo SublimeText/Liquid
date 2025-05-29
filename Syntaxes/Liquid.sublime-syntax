@@ -304,7 +304,7 @@ contexts:
 
   liquid-iteration-common:
     - match: \bin\b
-      scope: keyword.operator.iteration.in.liquid
+      scope: keyword.control.loop.in.liquid
     - include: liquid-expression
 
 ###[ LIQUID FUNCTIONS ]#######################################################

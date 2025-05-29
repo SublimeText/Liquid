@@ -156,7 +156,7 @@ endcase %}
 |^^^^^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
 |  ^^^ keyword.control.loop.for.liquid
 |      ^ variable.other.liquid
-|        ^^ keyword.operator.iteration.in.liquid
+|        ^^ keyword.control.loop.in.liquid
 |           ^^^^^^ meta.sequence.range.liquid
 |           ^ punctuation.section.sequence.begin.liquid
 |            ^ constant.numeric.value.liquid
@@ -170,7 +170,7 @@ endcase %}
 |^^^^^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
 |  ^^^ keyword.control.loop.for.liquid
 |      ^ variable.other.liquid
-|        ^^ keyword.operator.iteration.in.liquid
+|        ^^ keyword.control.loop.in.liquid
 |           ^^^^^^^^ meta.sequence.range.liquid
 |           ^ punctuation.section.sequence.begin.liquid
 |            ^ constant.numeric.value.liquid
@@ -185,7 +185,7 @@ endcase %}
 |^ punctuation.section.embedded.begin.liquid
 |  ^^^ keyword.control.loop.for.liquid
 |      ^^^^^^^ variable.other.liquid
-|              ^^ keyword.operator.iteration.in.liquid
+|              ^^ keyword.control.loop.in.liquid
 |                 ^^^^^^^^^^ variable.other.liquid
 |                           ^ punctuation.accessor.dot.liquid
 |                            ^^^^^^^^ variable.other.member.liquid
@@ -256,7 +256,7 @@ endcase %}
 |^ punctuation.section.embedded.begin.liquid
 |  ^^^^^^^^ keyword.control.loop.tablerow.liquid
 |           ^^^^^^^ variable.other.liquid
-|                   ^^ keyword.operator.iteration.in.liquid
+|                   ^^ keyword.control.loop.in.liquid
 |                      ^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.range.liquid
 |                      ^ punctuation.section.sequence.begin.liquid
 |                       ^ constant.numeric.value.liquid
@@ -289,7 +289,7 @@ for product in collection.products
 |^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
 |^^ keyword.control.loop.for.liquid
 |   ^^^^^^^ variable.other.liquid
-|           ^^ keyword.operator.iteration.in.liquid
+|           ^^ keyword.control.loop.in.liquid
 |              ^^^^^^^^^^ variable.other.liquid
 |                        ^ punctuation.accessor.dot.liquid
 |                         ^^^^^^^^ variable.other.member.liquid
