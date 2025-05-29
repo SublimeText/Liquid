@@ -47,7 +47,7 @@ contexts:
     - include: tag
     - include: entities
 
-###[ CUSTOM HTML ]############################################################
+###[ CUSTOM HTML ]#############################################################
 
   cdata-content:
     - meta_prepend: true

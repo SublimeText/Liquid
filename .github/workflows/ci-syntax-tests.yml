@@ -25,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15   # default is 6 hours!
     strategy:
+      fail-fast: false
       matrix:
         include:
           - build: 4126
