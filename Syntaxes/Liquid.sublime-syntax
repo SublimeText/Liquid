@@ -30,6 +30,7 @@ contexts:
     - include: liquid-schema-tags
     - include: liquid-javascript-tags
     - include: liquid-style-tags
+    - include: liquid-stylesheet-tags
     - include: liquid-raw-tags
     - include: liquid-statement-tags
 
@@ -127,7 +128,7 @@ contexts:
         2: keyword.declaration.schema.liquid
         3: punctuation.section.embedded.end.liquid
 
-###[ LIQUID STYLE TAGS ]#######################################################
+###[ LIQUID STYLE TAGS ]######################################################
 
   liquid-style-tags:
     # https://shopify.dev/api/liquid/tags/theme-tags#style
@@ -140,6 +141,25 @@ contexts:
       embed: scope:source.css.liquid
       embed_scope: source.css.embedded.liquid
       escape: ({%-?)\s*(endstyle)\s*(-?%})
+      escape_captures:
+        0: meta.embedded.liquid source.liquid meta.statement.liquid
+        1: punctuation.section.embedded.begin.liquid
+        2: keyword.declaration.raw.liquid
+        3: punctuation.section.embedded.end.liquid
+
+###[ LIQUID STYLESHEET TAGS ]#################################################
+
+  liquid-stylesheet-tags:
+    # https://shopify.dev/docs/api/liquid/tags/theme-tags#stylesheet
+    - match: ({%-?)\s*(stylesheet)\s*(-?%})
+      scope: meta.embedded.liquid source.liquid meta.statement.liquid
+      captures:
+        1: punctuation.section.embedded.begin.liquid
+        2: keyword.declaration.raw.liquid
+        3: punctuation.section.embedded.end.liquid
+      embed: scope:source.css
+      embed_scope: source.css.embedded.liquid
+      escape: ({%-?)\s*(endstylesheet)\s*(-?%})
       escape_captures:
         0: meta.embedded.liquid source.liquid meta.statement.liquid
         1: punctuation.section.embedded.begin.liquid

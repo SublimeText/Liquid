@@ -594,6 +594,24 @@ div {
 |  ^^^^^^^^ keyword.declaration.raw.liquid
 |           ^^ punctuation.section.embedded.end.liquid
 
+{% stylesheet %}
+| <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
+|^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+|^ punctuation.section.embedded.begin.liquid
+|  ^^^^^^^^^^ keyword.declaration.raw.liquid
+|             ^^ punctuation.section.embedded.end.liquid
+
+div {
+    display: none;
+}
+
+{% endstylesheet %}
+| <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
+|^^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+|^ punctuation.section.embedded.begin.liquid
+|  ^^^^^^^^^^^^^ keyword.declaration.raw.liquid
+|                ^^ punctuation.section.embedded.end.liquid
+
 {% plugin "foo" %}
 | <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
 |^^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
