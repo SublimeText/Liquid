@@ -394,6 +394,66 @@ I am {{ age }} and my favorite food is {{ favorite_food }}.
 |  ^^^^^^^^^^ keyword.declaration.comment.liquid
 |             ^^ punctuation.section.embedded.end.liquid
 
+{% doc %}
+| <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
+|^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+|^ punctuation.section.embedded.begin.liquid
+|  ^^^ keyword.declaration.comment.liquid
+|      ^^ punctuation.section.embedded.end.liquid
+
+  @description This will display a product title
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid comment.block.documentation.liquid
+| ^^^^^^^^^^^^ entity.name.tag.documentation.liquid
+
+  @param {product} product The product to display the title for
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid comment.block.documentation.liquid
+| ^^^^^^ entity.name.tag.documentation.liquid
+|        ^^^^^^^^^ storage.type.liquid
+|        ^ punctuation.definition.type.begin.liquid
+|                ^ punctuation.definition.type.end.liquid
+|                  ^^^^^^^ variable.other.liquid
+
+  @example
+|^^^^^^^^^ meta.embedded.liquid source.liquid comment.block.documentation.liquid
+| ^^^^^^^^ entity.name.tag.documentation.liquid
+    <div class={{ var | filter }}></div>
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid comment.block.documentation.liquid
+|   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.block
+|   ^ punctuation.definition.tag.begin.html
+|    ^^^ entity.name.tag
+|        ^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.class.html
+|        ^^^^^ entity.other.attribute-name.class.html
+|             ^ punctuation.separator.key-value.html
+|              ^^^^^^^^^^^^^^^^^^ meta.class-name.html meta.string.html meta.interpolation.liquid
+|              ^^ punctuation.section.interpolation.begin.liquid
+|                ^^^^^^^^^^^^^^ source.liquid
+|                 ^^^ variable.other.liquid
+|                     ^^^^^^^^ meta.filter.liquid
+|                     ^ keyword.operator.logical.pipe.liquid
+|                       ^^^^^^ support.function.filter.liquid
+|                              ^^ punctuation.section.interpolation.end.liquid
+|                                ^ punctuation.definition.tag.end.html
+|                                 ^^ punctuation.definition.tag.begin.html
+|                                   ^^^ entity.name.tag
+|                                      ^ punctuation.definition.tag.end.html
+
+  @example
+| ^^^^^^^^ entity.name.tag.documentation.liquid
+    {% render 'price' %}
+|^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid comment.block.documentation.liquid
+|   ^^ punctuation.section.embedded.begin.liquid
+|      ^^^^^^ support.function.liquid
+|             ^^^^^^^ meta.string.liquid string.quoted.single.liquid
+|             ^ punctuation.definition.string.begin.liquid
+|                   ^ punctuation.definition.string.end.liquid
+|                     ^^ punctuation.section.embedded.end.liquid
+
+{% enddoc %}
+|^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+|^ punctuation.section.embedded.begin.liquid
+|  ^^^^^^ keyword.declaration.comment.liquid
+|         ^^ punctuation.section.embedded.end.liquid
+
 {% javascript %}
 | <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
 |^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
