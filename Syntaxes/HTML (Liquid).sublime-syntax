@@ -39,8 +39,6 @@ contexts:
     - match: ^|(?=\S)
       pop: 1
 
-###[ CUSTOM HTML ]############################################################
-
   cdata-content:
     - meta_prepend: true
     - meta_include_prototype: false
