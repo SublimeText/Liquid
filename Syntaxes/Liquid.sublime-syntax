@@ -76,20 +76,36 @@ contexts:
   liquid-doc-tags:
     # https://shopify.dev/docs/api/liquid/tags/theme-tags#doc
     - match: ({%-?)\s*(doc)\s*(-?%})
-      scope: meta.embedded.liquid source.liquid meta.statement.liquid
+      scope: meta.statement.liquid
       captures:
         1: punctuation.section.embedded.begin.liquid
-        2: keyword.declaration.raw.liquid
+        2: keyword.declaration.comment.liquid
         3: punctuation.section.embedded.end.liquid
-      embed: scope:source.liquiddoc
-      embed_scope: source.embedded.liquiddoc
-      escape: ({%-?)\s*(enddoc)\s*(-?%})
-      escape_captures:
-        0: meta.embedded.liquid source.liquid meta.statement.liquid
+      push: liquid-doc-tag-body
+
+  liquid-doc-tag-body:
+    - meta_scope: meta.embedded.liquid source.liquid
+    - meta_content_scope: comment.block.documentation.liquid
+    - match: ({%-?)\s*(enddoc)\s*(-?%})
+      scope: meta.statement.liquid
+      captures:
         1: punctuation.section.embedded.begin.liquid
-        2: keyword.declaration.raw.liquid
+        2: keyword.declaration.comment.liquid
         3: punctuation.section.embedded.end.liquid
       pop: 1
+    - match: '@description\b'
+      scope: entity.name.tag.documentation.liquid
+    - match: '(@param)\s+(({){{liquid_variables}}(}))\s+(\[?{{liquid_variables}}\]?)'
+      captures:
+        1: entity.name.tag.documentation.liquid
+        2: storage.type.liquid
+        3: punctuation.definition.type.begin.liquid
+        4: punctuation.definition.type.end.liquid
+        5: variable.other.liquid
+    - match: '@example\b'
+      scope: entity.name.tag.documentation.liquid
+      embed: scope:text.html.liquid
+      escape: (?=@example\b|{%-?\s*enddoc\s*-?%})
 
 ###[ LIQUID JAVASCRIPT TAGS ]##################################################
 
