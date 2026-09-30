@@ -105,6 +105,21 @@ A Paragraph {{var}}
 |    ^^^^ constant.language.boolean.true.liquid
 -%}
 
+{%- elsif foo -%}
+| <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
+|^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+|^^ punctuation.section.embedded.begin.liquid
+|   ^^^^^ keyword.control.conditional.elseif.liquid
+|         ^^^ variable.other.liquid
+|             ^^^ punctuation.section.embedded.end.liquid
+
+{%- endif -%}
+| <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
+|^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+|^^ punctuation.section.embedded.begin.liquid
+|   ^^^^^ keyword.control.conditional.end.liquid
+|         ^^^ punctuation.section.embedded.end.liquid
+
 {% case handle %}
 |^^^^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
 |  ^^^^ keyword.control.conditional.case.liquid
@@ -545,6 +560,28 @@ In Handlebars, {{ this }} will be HTML-escaped, but {{{ that }}} will not.
 |^ punctuation.section.embedded.begin.liquid
 |  ^^^^^^ keyword.declaration.raw.liquid
 |         ^^ punctuation.section.embedded.end.liquid
+
+{%- raw -%}
+| <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
+|^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+|^^ punctuation.section.embedded.begin.liquid
+|   ^^^ keyword.declaration.raw.liquid
+|       ^^^ punctuation.section.embedded.end.liquid
+
+In Handlebars, {{ this }} will be HTML-escaped, but {{{ that }}} will not.
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.raw.liquid
+|              ^^^^^^^^^^ - meta.interpolation.liquid
+|                                                   ^^^^^^^^^^^^ - meta.interpolation.liquid
+
+{%- raw -%}
+|^^^^^^^^^^ meta.raw.liquid - meta.tag - punctuation - keyword
+
+{%- endraw -%}
+| <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
+|^^^^^^^^^^^^^ meta.embedded.liquid source.liquid meta.statement.liquid
+|^^ punctuation.section.embedded.begin.liquid
+|   ^^^^^^ keyword.declaration.raw.liquid
+|          ^^^ punctuation.section.embedded.end.liquid
 
 {% include "template-name" %}
 | <- meta.embedded.liquid source.liquid meta.statement.liquid punctuation.section.embedded.begin.liquid
