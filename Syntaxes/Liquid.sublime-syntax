@@ -11,9 +11,9 @@ hidden: true
 variables:
   liquid_variables: \b[a-zA-Z_][0-9a-zA-Z_]*\b
 
-  jekyll_highlight_begin: (?:({%)\s*(highlight)\s+)
-  jekyll_highlight_params: (?:(?:\s+(\S.*?))?\s*(%}))
-  jekyll_highlight_escape: (({%)\s*(endhighlight)\s*(%}))
+  jekyll_highlight_begin: (?:({%-?)\s*(highlight)\s+)
+  jekyll_highlight_params: (?:(?:\s+(\S.*?))?\s*(-?%}))
+  jekyll_highlight_escape: (({%-?)\s*(endhighlight)\s*(-?%}))
 
 contexts:
 
@@ -129,7 +129,7 @@ contexts:
 
   liquid-raw-tags:
     # https://shopify.github.io/liquid/tags/template
-    - match: ({%)\s*(raw)\s*(%})
+    - match: ({%-?)\s*(raw)\s*(-?%})
       scope: meta.embedded.liquid source.liquid meta.statement.liquid
       captures:
         1: punctuation.section.embedded.begin.liquid
@@ -139,7 +139,7 @@ contexts:
 
   liquid-raw-tag-body:
     - meta_content_scope: meta.raw.liquid
-    - match: ({%)\s*(endraw)\s*(%})
+    - match: ({%-?)\s*(endraw)\s*(-?%})
       scope: meta.embedded.liquid source.liquid meta.statement.liquid
       captures:
         1: punctuation.section.embedded.begin.liquid
